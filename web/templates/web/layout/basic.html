@@ -1,0 +1,254 @@
+{% load static %}
+{% load i18n %}
+{% load myTemplateTags %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'web/img/websiteIcon.ico' %}">
+    <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
+<style>
+    .iconConfig{
+        fill:currentColor;
+        vertical-align: -.125em;
+    }
+</style>
+    {% block title %}
+        
+    {% endblock %}
+    {% block css %}
+
+    {% endblock %}
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol t="1691772692548" viewBox="0 0 1024 1024" p-id="6763" id="websiteIcon">
+        <path d="M896 195.8V96a32 32 0 0 0-32-32H160a32 32 0 0 0-32 32v256a32 32 0 0 0 32 32h229.39L148.33 759A127.75 127.75 0 0 0 128 828.2V928a32 32 0 0 0 32 32h704a32 32 0 0 0 32-32V672a32 32 0 0 0-32-32H634.61l241.06-375A127.75 127.75 0 0 0 896 195.8zM832 128v64H192v-64zM192 896v-67.8a63.78 63.78 0 0 1 10.17-34.61L465.47 384h83.92L293.08 782.7A32 32 0 0 0 320 832h512v64z m640-128H378.61l41.15-64H832zM460.9 640l174-270.7A32 32 0 0 0 608 320H192v-64h613.39L558.53 640z" fill="#0b2239" p-id="6764"></path>
+    </symbol>
+    <symbol id="home" viewBox="0 0 576 512">
+        <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c.2 35.5-28.5 64.3-64 64.3H128.1c-35.3 0-64-28.7-64-64V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L416 100.7V64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V185l52.8 46.4c8 7 12 15 11 24zM248 192c-13.3 0-24 10.7-24 24v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V216c0-13.3-10.7-24-24-24H248z"/>
+    </symbol>
+    <symbol id="archieve" viewBox="0 0 512 512">
+        <path d="M32 32H480c17.7 0 32 14.3 32 32V96c0 17.7-14.3 32-32 32H32C14.3 128 0 113.7 0 96V64C0 46.3 14.3 32 32 32zm0 128H480V416c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V160zm128 80c0 8.8 7.2 16 16 16H336c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16z"/>
+    </symbol>
+    <symbol id="email" viewBox="0 0 512 512">
+        <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/>
+    </symbol>
+</svg>
+<div class="modal fade" id="contactMeModal" tabindex="-1" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 mx-auto" id="exampleModalLabel">{% trans 'Contact Me' %}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="card text-center">
+              <div class="card-header">
+                <ul class="nav nav-tabs" >
+                  <li class="nav-item" >
+                    <button class="nav-link active" id="wechat" data-bs-toggle="tab" data-bs-target="#wechat-tab-pane" type="button" >{% trans 'Wechat' %}</button>
+                  </li>
+                  <li class="nav-item" >
+                    <button class="nav-link" id="email-tab" data-bs-toggle="tab" data-bs-target="#email-tab-pane" type="button" >{% trans 'Email' %}</button>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body">
+                  <div class="tab-content" >
+                      <div class="tab-pane fade show active" id="wechat-tab-pane" tabindex="0">
+                          <img src="{% static 'web/img/myWechatQrcode.jpg' %}" class="rounded img-thumbnail">
+                          <button type="button" class="btn btn-outline-success w-100 mt-2" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                      </div>
+                      <div class="tab-pane fade" id="email-tab-pane" tabindex="0">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div class="form-floating">
+                                      <input type="email" id="id_email" class="form-control" value="liaozhimatters@gmail.com" placeholder=" " readonly>
+                                      <label for="id_email">{% trans 'Email Me' %}</label>
+                                  </div>
+                              <div >
+                                  <button class="btn btn-outline-success rounded-pill" type="button" id="copyEmailTrigger">{% trans 'Copy' %}</button>
+                              </div>
+                          </div>
+                          <button type="button" class="btn btn-outline-success w-100 mt-2" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="toast-container position-fixed end-0 top-0 p-3">
+  <div id="copyStatusToast" class="toast" >
+    <div class="toast-header bg-warning-subtle">
+      <strong class="me-auto">{% trans 'Copy Status' %}</strong>
+      <small>{% trans 'just now' %}</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        {% trans "You've copied my email address, go ahead and email me" %}
+    </div>
+  </div>
+</div>
+    <nav class="navbar navbar-expand-md bg-body-tertiary  sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'web:landingpage' %}" >
+        <svg height="50px" width="50px">
+            <use xlink:href="#websiteIcon"></use>
+        </svg>
+        ZhiLiao
+    </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">ZhiLiao</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-around pe-3 mx-auto">
+          <li class="nav-item">
+            <a class="nav-link "  href="{% url 'web:landingpage' %}">
+                <svg class="iconConfig" width="25px" height="25px">
+                    <use xlink:href="#home"></use>
+                </svg>
+                {% trans 'Landing Page' %}
+            </a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link "  href="{% url 'web:bilibiliResourceDownload' %}">
+                <svg class="iconConfig" width="25px" height="25px">
+                    <use xlink:href="#archieve"></use>
+                </svg>
+                {% trans 'Bilibili Video Resouce' %}</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link"  href="#" type="button" data-bs-toggle="modal" data-bs-target="#contactMeModal">
+                <svg class="iconConfig" width="25px" height="25px">
+                    <use xlink:href="#email"></use>
+                </svg>
+                {% trans 'Contact Me' %}
+            </a>
+          </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle px-1 py-0" type="button" data-bs-toggle="dropdown" style="vertical-align: -0.5em">
+                    <img src="{% if request.LANGUAGE_CODE == 'zh' %}
+                    	{% static 'web/img/china.png' %}
+                    	{% elif request.LANGUAGE_CODE == 'en' %}
+                    	{% static 'web/img/united-kingdom.png' %}
+                    {% endif %}"  width="25px" height="25px">
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item changeLanguageTrigger {% if request.LANGUAGE_CODE == 'zh' %}
+                    	acitive disabled
+                    {% endif %} " href="#" data-language-code="zh" >
+                        <img src="{% static 'web/img/china.png' %}" width="25px" height="25px">中文
+                    </a></li>
+                    <li><a class="dropdown-item changeLanguageTrigger {% if request.LANGUAGE_CODE == 'en' %}
+                    	active disabled
+                    {% endif %}" href="#" data-language-code="en" >
+                        <img src="{% static 'web/img/united-kingdom.png' %}" width="25px" height="25px">English
+                    </a></li>
+                  </ul>
+                </div>
+
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+    {% notification request %}
+    {% block content %}
+
+    {% endblock %}
+</body>
+<script src="{% static 'web/js/jquery-3.6.4.min.js' %}"></script>
+    <script src="{% static 'web/js/bootstrap.bundle.min.js' %}"></script>
+<script>
+    function listenEmailCopy(){
+        var copyStatusToast=$('#copyStatusToast')[0]
+        var copyStatusToastBootstrap=bootstrap.Toast.getOrCreateInstance(copyStatusToast)
+        $('#copyEmailTrigger').on('click',function (event){
+            var triggerElem=$(event.target)
+            triggerElem.prop('disabled',true)
+            var emailInputElem=$('#id_email')
+            emailInputElem[0].select()
+            document.execCommand('copy')
+            window.getSelection().removeAllRanges()
+            triggerElem.prop('disabled',false)
+            copyStatusToastBootstrap.show()
+        })
+    }
+    function listenLanguageChange(){
+        $('.changeLanguageTrigger').on('click',function (event) {
+            var triggerElem=$(this)
+            var languageCode=triggerElem.attr('data-language-code')
+            $.ajax({
+                'method':'get',
+                'url':'{% url 'web:changeLanguage' %}'+'?languageCode='+languageCode,
+                'dataType':'json',
+                'success':function (response){
+                    if(response['flag']){
+                        location.reload()
+                    }
+                    else{
+                        alert('{% trans 'Error:' %}'+response['message'])
+                    }
+                },
+                'error':function (jqXHR,textCode,ThrownError){
+                    if(jqXHR.textReponse){
+                        alert('{% trans 'Error:' %}: '+jqXHR.textReponse+'('+textCode+')')
+                    }
+                    else{
+                        alert('{% trans 'Error:' %}: '+ThrownError+'('+textCode+')')
+                    }
+                }
+                
+            })
+        })
+    }
+    function lisetnCloseNotification(){
+        $('#closeNotificationTrigger').on('click',function (event) {
+            var closeTrigger=$(event.target)
+            var notificationId=closeTrigger.attr('data-notificationId')
+            $.ajax({
+                'method':'get',
+                'url':'{% url 'web:closeNotification' %}'+'?readNotificationId='+notificationId,
+                'dataType':'json',
+                'success':function (response) {
+                    if(response['flag']){}
+                    else{
+                        alert('{% trans 'Error:' %}'+response['message'])
+                    }
+                },
+                'error':function (jqXHR,textCode,ThrownError){
+                    if(jqXHR.textReponse){
+                        alert('{% trans 'Error:' %}: '+jqXHR.textReponse+'('+textCode+')')
+                    }
+                    else{
+                        alert('{% trans 'Error:' %}: '+ThrownError+'('+textCode+')')
+                    }
+                }
+            })
+        })
+    }
+    $(()=>{
+        listenEmailCopy()
+        listenLanguageChange()
+        lisetnCloseNotification()
+    })
+</script>
+    {% block js %}
+
+    {% endblock %}
+</html>

@@ -1,0 +1,4 @@
+databaseIp=''
+databaseName=''
+databaseAccessedUser=''
+databasePwd=''

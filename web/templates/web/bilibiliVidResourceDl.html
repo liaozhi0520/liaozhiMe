@@ -1,0 +1,67 @@
+{% extends 'web/layout/basic.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}
+	<title>Bilibili Videos Resource  Download</title>
+{% endblock %}
+{% block css %}
+    <style>
+        #resourceDownloadAccordion{
+            width: 768px;
+        }
+        @media only screen and (max-width: 768px){
+            #resourceDownloadAccordion{
+                width: 100%
+            }
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <svg xmlns="http://www.w3.org/1999/xhtml" class="d-none">
+        <symbol id="downloadFile" viewBox="0 0 384 512">
+            <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z"/>
+        </symbol>
+    </svg>
+	<div class="mx-auto mt-2" id="resourceDownloadAccordion">
+    {% for series in dataRetrieved %}
+        <h3 class="text-center">{{ series.seriesName }}</h3>
+        <div class="accordion" id="id_series_{{ series.seriesId }}">
+            {%  for video in series.videoFromSeries %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#id_video_{{ video.videoId }}" >
+                        {{ video.videoName }}
+                      </button>
+                    </h2>
+                    <div id="id_video_{{ video.videoId }}" class="accordion-collapse collapse {% if not forloop.counter0 %}
+                    	show
+                    {% endif %} " data-bs-parent="#id_series{{ series.seriesId }}">
+                        <div class="accordion-body">
+                            <div class="list-group">
+                                {% for resource in video.resourceFromVideo %}
+                                	<a href="{% static resource.resourceUrl %}" class="list-group-item list-group-item-action" download>
+                                        <div class="d-flex justify-content-between">
+                                            <span>{{ resource.resourceName }}</span>
+                                              <span>
+                                                  <svg class="iconConfig" height="25px" width="25px">
+                                                    <use xlink:href="#downloadFile"></use>
+                                                  </svg>
+                                              </span>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    	
+    {% endfor %}
+    </div>
+    
+
+{% endblock %}
+{% block js %}
+
+{% endblock %}

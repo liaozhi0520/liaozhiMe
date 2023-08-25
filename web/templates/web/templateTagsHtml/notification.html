@@ -1,0 +1,16 @@
+{% load i18n %}
+{% load static %}
+{% if needToShowNotification %}
+    <div class="alert alert-dismissible fade show fixed-top" id="notification" style="max-width: 768px;">
+        <div class="card mb-3">
+          <div class="d-flex justify-content-around align-items-center flex-shrink-0">
+              <img src="{% static notificationData.notifitionImgSrc %}" class="rounded-start" width="150px" >
+              <div class="card-body">
+                <h5 class="card-title"><span class="me-auto">{% trans 'Notification' %}</span><button type="button" class="btn-close" data-bs-dismiss="alert" id="closeNotificationTrigger" data-notificationId="{{ notificationData.notificationId }}"></button></h5>
+                <p class="card-text" id="textForNotification">{{ notificationData.notificationText }}</p>
+                <p class="card-text" id="createdTimeForNotification"><small class="text-body-secondary">{{ notificationData.notificationCreatedTime }}</small></p>
+              </div>
+          </div>
+        </div>
+    </div>
+{% endif %}
