@@ -1,0 +1,39 @@
+{% extends 'web/layout/docLayout.html' %}
+{% load i18n %}
+{% block content %}
+    <div id="indexContainer" class="text-center p-3" max-width="768px">
+        <ul class="list-unstyled ps-0">
+            {% for videoSeries in dataRetrieved %}
+            <li class="mb-1">
+              <button
+                class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#videoSeriesId_{{videoSeries.videoSeriesId}}"
+                aria-expanded="false"
+              >
+                {{videoSeries.videoSeriesName}}
+              </button>
+              <div
+                class="collapse"
+                id="videoSeriesId_{{videoSeries.videoSeriesId}}"
+              >
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  {% for video in videoSeries.videosFromVideoSeries %}
+                  <li>
+                    <a
+                      href="{% url 'web:bilibiliVideoDocs' %}?docTemplateUrl=web/bilibiliVideoDocTemplates/{{videoSeries.videoSeriesId}}/{{video.videoId}}"
+                      class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                      >{{video.videoName}}</a
+                    >
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+
+
+    </div>
+{% endblock content %}
+    

@@ -1,0 +1,922 @@
+{% extends 'web/layout/docLayout.html' %} {% load static %} {% load i18n %} 
+{% block title %}
+<title>{% trans 'Pure Beginner Guide' %}</title>
+{% endblock %} {% block css %} {% endblock %} {% block content %}
+<div id="notionPageContainer">
+  <article id="723118a6-be82-4779-bfc3-24db47dad667" class="page sans">
+    <header>
+      <img
+        class="page-cover-image"
+        src="https://www.notion.so/images/page-cover/woodcuts_11.jpg"
+        style="object-position: center 100%"
+      />
+      <div class="page-header-icon page-header-icon-with-cover">
+        <img
+          class="icon"
+          src="https://www.notion.so/icons/castle-japanese_brown.svg"
+        />
+      </div>
+      <h1 class="page-title"><strong>入门小白了解stable diffusion</strong></h1>
+      <p class="page-description"></p>
+    </header>
+    <div class="page-body">
+      <ul id="cedbaeb1-dca0-4a4b-ac9c-a8a69138e207" class="toggle">
+        <li>
+          <details >
+            <summary><strong>什么是Stable Diffusion？</strong></summary>
+            <blockquote id="0d5e13f7-51fb-4df4-9fcf-93c60cdda2c7" class="">
+              相信大家决定入手此教程的时候就已经通过网上的各种AI绘画的视频了解到了stable
+              diffusion的作用了。简而言之，就是通过文字描述你想得到的图片，然后交给stable
+              diffusion得到你想要的图片，这直接就使得一堆设计师拍案叫绝，我花一天P的图片，stable
+              diffusion这小子仅仅十几秒（当然这是由你的电脑配置来决定的）就搞定了。例如：
+              <figure id="6c341231-aaf3-4004-b62a-ff53eb1d1dba" class="image">
+                <a target=”_blank”
+                  href="{% static imgUrlPrefix %}/Untitled.png"
+                  ><img
+                    style="width: 384px"
+                    src="{% static imgUrlPrefix %}/Untitled.png"
+                /></a>
+              </figure>
+            </blockquote>
+            <blockquote id="87eced28-dc75-4616-801d-85f3fffe6079" class="">
+              那如果仅仅只有文字生成图片(text to
+              image)这个功能，那么咱们这个教程系列很快就结束了。其实，stable
+              diffusion自从由国外的 Stability AI
+              公司于2022年8月22日开源以来，已经发展出了强大丰富的stable
+              diffusion生态系统：
+              <figure id="3e27d9f6-6e6a-43a1-ab82-bf21fb39cdbf" class="image">
+                <a target=”_blank”
+                  href="{% static imgUrlPrefix %}/Untitled-2023-08-08-2017.svg"
+                  ><img
+                    style="width: 384px"
+                    src="{% static imgUrlPrefix %}/Untitled-2023-08-08-2017.svg"
+                /></a>
+              </figure>
+              <p id="5700f198-e04c-4f77-8bc9-bd1a507bd40f" class="">
+                例如最近很火的艺术二维码，AI模特衣服试穿，AI视频AI换脸在丰富的生态系统里也都仅仅只是星辰一粟而已），凡是跟图片有关系的，生态系统里都能找到
+              </p>
+            </blockquote>
+            <blockquote id="843e9796-b4c0-4cbc-97b4-44e2c87e4b58" class="">
+              很多人觉得愿意花每个月20美金去使用MidJourney，在stable
+              diffusion的SDXL模型出来之前，这个想法固然有合理性，因为MIdjourney的出图质量比任何stable
+              diffusion使用的模型的出图质量要好，但是在SDXL出来之前，这个想法就显得有点不理智了。再加上stable
+              diffusion丰富的生态系统和免费的特点，学习使用 stable
+              diffusion将是条不由之路
+            </blockquote>
+          </details>
+        </li>
+      </ul>
+      <ul id="a29383a7-3b08-4b77-ac3a-4e8d74cc10b1" class="toggle">
+        <li>
+          <details >
+            <summary>
+              <strong>你可以使用 stable diffusion 做什么</strong>
+            </summary>
+            <blockquote id="c2b18f24-8173-48ea-a088-f303c9fda79c" class="">
+              接下来就带大家来感受以下stable diffusion的丰富生态
+            </blockquote>
+            <ol
+              type="1"
+              id="c5cc7563-69f2-4452-a404-9040e7b92924"
+              class="numbered-list"
+              start="1"
+            >
+              <li>
+                从文字(Prompts) 生成图像(Images)—&gt;(text to image)(txt2img)
+                <p id="b5fa0fcc-9ad5-4744-abc4-b61dc792eb56" class="">
+                  这个功能用途就不必在这里赘述了，展示：
+                </p>
+                <ul id="03b9c8c2-27ed-48d9-a3e8-0c05d9f42130" class="toggle">
+                  <li>
+                    <details >
+                      <summary>展示</summary>
+                      <blockquote
+                        id="5bc4e589-9f54-4293-91fd-4c7511df2d56"
+                        class=""
+                      >
+                        现实风格(<strong><strong>Realistic</strong></strong
+                        >)
+                        <figure
+                          id="5fbd07f5-e67a-41ea-9b94-2fc99bc09a4f"
+                          class="image"
+                        >
+                          <a target=”_blank”
+                            href="{% static imgUrlPrefix %}/Untitled%201.png"
+                            ><img
+                              style="width: 747px"
+                              src="{% static imgUrlPrefix %}/Untitled%201.png"
+                          /></a>
+                        </figure>
+                      </blockquote>
+                      <blockquote
+                        id="f6014f67-2c09-41a5-a621-4c2be1abb842"
+                        class=""
+                      >
+                        半现实主义风格(<strong
+                          ><strong>Semi-Realistic)</strong></strong
+                        >
+                        <figure
+                          id="8d3fcad9-7818-493a-a336-8d36d19ccd6b"
+                          class="image"
+                        >
+                          <a target=”_blank”
+                            href="{% static imgUrlPrefix %}/Untitled%202.png"
+                            ><img
+                              style="width: 750px"
+                              src="{% static imgUrlPrefix %}/Untitled%202.png"
+                          /></a>
+                        </figure>
+                      </blockquote>
+                      <blockquote
+                        id="be320805-d39f-4788-bd29-f31509fb7b2e"
+                        class=""
+                      >
+                        动漫(<strong><strong>Anime)</strong></strong>
+                        <figure
+                          id="83435634-e1f2-4de0-8538-cf85f283bc07"
+                          class="image"
+                        >
+                          <a target=”_blank”
+                            href="{% static imgUrlPrefix %}/Untitled%203.png"
+                            ><img
+                              style="width: 757px"
+                              src="{% static imgUrlPrefix %}/Untitled%203.png"
+                          /></a>
+                        </figure>
+                      </blockquote>
+                      <blockquote
+                        id="b420d3b8-5ede-42f2-91dc-b3680b97a57e"
+                        class=""
+                      >
+                        游戏道具(<strong><strong>Game Assets)</strong></strong>
+                        <figure
+                          id="2499393c-48bf-45ce-a8a3-df7ae29cbbae"
+                          class="image"
+                        >
+                          <a target=”_blank”
+                            href="{% static imgUrlPrefix %}/Untitled%204.png"
+                            ><img
+                              style="width: 677px"
+                              src="{% static imgUrlPrefix %}/Untitled%204.png"
+                          /></a>
+                        </figure>
+                      </blockquote>
+                      <blockquote
+                        id="e553f293-18df-420a-9286-45f707a2e7b3"
+                        class=""
+                      >
+                        风景(<strong><strong>Landscapes)</strong></strong>
+                        <figure
+                          id="a2f5a922-39cc-4d4c-a004-8e3295580001"
+                          class="image"
+                        >
+                          <a target=”_blank”
+                            href="{% static imgUrlPrefix %}/r7in10iy7i1b1-1024x680.webp"
+                            ><img
+                              style="width: 1024px"
+                              src="{% static imgUrlPrefix %}/r7in10iy7i1b1-1024x680.webp"
+                          /></a>
+                        </figure>
+                      </blockquote>
+                    </details>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="49c77f15-7339-425d-8b7e-4fff9f944fad"
+              class="numbered-list"
+              start="2"
+            >
+              <li>
+                从图像(images)生成图像(images)
+                <p id="9567d2d9-5172-4916-8ab0-898ef19e3ae2" class="">
+                  使用这种功能常常是你无法准确的描述你想要的图片，或者你想要一张与原图有相同特征的图片，此时你可以在原图的基础上生成其它的图像
+                </p>
+                <figure id="a73c3372-d9c7-4105-9082-fe0b6d7620d5" class="image">
+                  <a target=”_blank”
+                    href="{% static imgUrlPrefix %}/image.png"
+                    ><img
+                      style="width: 640px"
+                      src="{% static imgUrlPrefix %}/image.png"
+                  /></a>
+                </figure>
+                <figure id="ca830a33-2705-420f-846e-17cb7d3650b2" class="image">
+                  <a target=”_blank”
+                    href="{% static imgUrlPrefix %}/image-1.png"
+                    ><img
+                      style="width: 640px"
+                      src="{% static imgUrlPrefix %}/image-1.png"
+                  /></a>
+                </figure>
+              </li>
+            </ol>
+            <p id="cbf8cab2-b0b0-498c-b73d-84943b1505b0" class=""></p>
+            <ol
+              type="1"
+              id="332cbc2c-7e7c-45a0-ba09-61526a71d5ef"
+              class="numbered-list"
+              start="3"
+            >
+              <li>局部重绘图像(inpaiting)
+                <p id="184ab1b4-a258-485d-a548-41819c1915a8" class="">
+                    使用这种功能通常是因为可能初次生成的图像有局部无法达到需求，此时可以通过圈出局部区域，然后重新绘制
+                  </p>
+                  <p id="68d1b0c1-fa0e-41f8-85c0-3e7f5a2b31d7" class="">
+                    比如这张图片的士兵太模糊(显然，画这张图的人还没有体验过双摄的魅力)，此时我可以圈出背景区域，然后使用局部重绘(inpainting)功能
+                  </p>
+                  <figure id="2dd4aa30-b77c-466e-9eb6-eeca04724450" class="image">
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/5zavjhvczrpa1.webp"
+                      ><img
+                        style="width: 768px"
+                        src="{% static imgUrlPrefix %}/5zavjhvczrpa1.webp"
+                    /></a>
+                  </figure>
+                  <figure id="57da1ef5-18e5-414a-9b42-4f6bc827af85" class="image">
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/3l2jpvzdgqpa1.webp"
+                      ><img
+                        style="width: 768px"
+                        src="{% static imgUrlPrefix %}/3l2jpvzdgqpa1.webp"
+                    /></a>
+                  </figure>
+              </li>
+            </ol>
+            
+            <ol
+              type="1"
+              id="17fe8fa2-80b1-42e2-9452-73b46af384d5"
+              class="numbered-list"
+              start="4"
+            >
+              <li>
+                扩展图像(outpainting)
+                <p id="1800e118-b00b-43df-8be8-5bfaacc57c2c" class="">
+                  有 inpainting
+                  自然也会有outpainting，例如你嫌弃现在这张图像太窄了，你可以使用扩展图像(outpaiting)这个功能增宽图像
+                </p>
+              </li>
+            </ol>
+            <ol
+              type="1"
+              id="fa55a5a4-db01-4df1-b8f3-fb22860511d7"
+              class="numbered-list"
+              start="6"
+            >
+              <li>
+                创建动画
+                <p id="85de37fd-9b3c-4af1-8ba0-ed0d3fb8c1c9" class="">
+                  我们知道动画是由一张张的图片（帧(frame)）组成的，那我让stable
+                  diffusion来帮我们生成帧，然后再把帧组件二起来不就成为一张动画了吗？
+                </p>
+                <figure id="96df8d97-2624-4a23-9673-c67798cb9988">
+                    <video class="object-fit-scale" controls>
+                        <source src="{% static imgUrlPrefix %}/YT2mp3.info_-_Trip_Generator___Stable_Diffusion___Deforum___AI.mp4" type="video/mp4">
+                    </video>
+                </figure>
+                <blockquote id="3e739b69-45bf-42da-95d2-b2b688169532" class="">
+                  目前来说，使用stale
+                  diffusion来生成动画的技术仍然不够成熟，因为使用目前的技术，就算你加再多的限制条件，你都无法保证stable
+                  diffusion生成一样的背景或者五官。所以生成的动画还是不尽如人意。
+                </blockquote>
+                <blockquote id="519278d5-eae6-4b63-8fa2-1cd902d10bd0" class="">
+                  目前可以使用 Ebsynth+stable
+                  diffusion这种技术生成短时长镜头的动画效果还是比较理想，但是一旦时长变长，效果就不行了。
+                </blockquote>
+                <blockquote id="bb5fc76e-5d78-4a78-bd33-ea5d15813ad3" class="">
+                  不过最近好像出了另外一种新的技术— CoDef,
+                  据说效果不错，我后面尝试了之后，上述两种技术以及上面视频使用的Defourm技术都会分开详解
+                </blockquote>
+              </li>
+            </ol>
+          </details>
+        </li>
+      </ul>
+      <ul id="06afc10d-2a55-4ae5-a3f4-7f9246d36c13" class="toggle">
+        <li>
+          <details >
+            <summary>
+              <strong>如何使用
+                stable
+                diffusion</strong>
+            </summary>
+            <blockquote id="97af28e8-23a2-4b87-8ba7-eebdf3214ba8" class="">
+              想必大家也都听说了，抖音斥十亿美金向英伟达(Nvidia)购买GPU发展AI，stable
+              diffusion也是AI，故当你的电脑有一台高性能的GPU时，使用stable
+              diffusion的体验将越好。如何去评判GPU的性能好坏呢？在stable
+              diffusion这个领域，可以武断地说，当你的GPU显存(VRAM)越大，则性能越强。那么目前来说，不低于2GB的显存将是运行stable
+              diffusion的硬性条件。那当我没有这个硬性条件怎么办呢？当然，我还会介绍一些提供免费的stable
+              diffusion使用的网站，当然，这种网站提供的stable
+              diffusion生态没有我们自己在本机部署stable
+              diffusion丰富，但对于仅仅只是使用文生图(txt2img)这个功能的受众，亦足够了。
+            </blockquote>
+            <blockquote id="117d6934-8860-485a-b984-c9a7b1054e51" class="">
+              免费网站推荐：
+              <figure id="f829ca8e-670f-43b7-b797-64f81d8a9c41">
+                <a target=”_blank”
+                  href="https://dreamstudio.ai/generate"
+                  class="bookmark source"
+                  ><div class="bookmark-info">
+                    <div class="bookmark-text">
+                      <div class="bookmark-title">DreamStudio</div>
+                    </div>
+                    <div class="bookmark-href">
+                      <img
+                        src="https://dreamstudio.ai/favicon.svg"
+                        class="icon bookmark-icon"
+                      />https://dreamstudio.ai/generate
+                    </div>
+                  </div></a
+                >
+              </figure>
+              <figure id="4c8abc5b-4ea1-45b5-b235-feb09e283e59">
+                <a target=”_blank”
+                  href="https://tinybots.net/artbot/create"
+                  class="bookmark source"
+                  ><div class="bookmark-info">
+                    <div class="bookmark-text">
+                      <div class="bookmark-title"></div>
+                    </div>
+                    <div class="bookmark-href">
+                      <img
+                        src="https://tinybots.net/favicon.ico"
+                        class="icon bookmark-icon"
+                      />https://tinybots.net/artbot/create
+                    </div>
+                  </div></a
+                >
+              </figure>
+              <p id="938ba50f-0751-4762-9b04-9756d6aab16f" class="">
+                后者提供的生态会比前一个网站要丰富
+              </p>
+            </blockquote>
+            <blockquote id="aaf632a0-ddd0-4248-b29f-4ff47e99ec0b" class="">
+              本机部署：
+              <ul id="ae04b2b6-8524-4714-b660-42ef09fd160a" class="toggle">
+                <li>
+                  <details >
+                    <summary><strong>NVIDIA GPU</strong></summary>
+                    <ul
+                      id="8fa578af-a09d-4d22-a454-a05788eb96cc"
+                      class="toggle"
+                    >
+                      <li>
+                        <details >
+                          <summary>有科学上网</summary>
+                          <h2
+                            id="892a6e10-6f53-4109-9bc6-ea780e896fdb"
+                            class=""
+                          >
+                            步骤1：
+                          </h2>
+                          <p id="3b7eb586-4d80-4a11-9c1a-bdce862fc45c" class="">
+                            访问网址
+                          </p>
+                          <p
+                              id="4830351a-8ac2-4d21-b41c-72bb8668e03e"
+                              class=""
+                            >
+                              <a
+                                href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/releases/tag/v1.0.0-pre"
+                                >https://github.com/AUTOMATIC1111/stable-diffusion-webui/releases/tag/v1.0.0-pre</a
+                              >
+                            </p>
+                          <p id="90965544-8208-4421-bd08-c15c8667da2c" class="">
+                            点击下载红圈链接
+                          </p>
+                          <figure
+                            id="f625d13d-84fb-4ebf-87fe-9af2a81fc7ce"
+                            class="image"
+                          >
+                            <a target=”_blank”
+                              href="{% static imgUrlPrefix %}/Untitled%205.png"
+                              ><img
+                                style="width: 1530px"
+                                src="{% static imgUrlPrefix %}/Untitled%205.png"
+                            /></a>
+                          </figure>
+                          <h2
+                            id="0a2d7e58-8abc-488f-8982-5ab312dcd37c"
+                            class=""
+                          >
+                            步骤2：
+                          </h2>
+                          <p id="ca91b0c8-825d-495b-9daf-ae3a82897120" class="">
+                            解压后进入文件夹，如下图所示先运行 update.bat
+                            文件，再运行 run.bat 文件
+                          </p>
+                          <figure
+                            id="47de185f-293e-43bd-9035-2eff0cf0976d"
+                            class="image"
+                          >
+                            <a target=”_blank”
+                              href="{% static imgUrlPrefix %}/Untitled%206.png"
+                              ><img
+                                style="width: 828px"
+                                src="{% static imgUrlPrefix %}/Untitled%206.png"
+                            /></a>
+                          </figure>
+                          <p id="8f289108-7e10-46d2-851a-e469a399145f" class="">
+                            <strong
+                              >运行run.bat 文件(this slow ass shit)
+                              要多久就得看你家网速了</strong
+                            >
+                          </p>
+                          <p id="6022665a-a225-4a69-b34f-a237ce0cee86" class="">
+                            首先它会进行初始化工作，初始化工作完毕后就会开始运行stable
+                            diffusion，初始化完成示意图如下：
+                          </p>
+                          <p
+                            id="cee7b109-e55b-4b5d-af20-8681bfba5f24"
+                            class=""
+                          ></p>
+                          <h2
+                            id="d093eae2-94c2-44f6-ad02-0bbe8c2bebd9"
+                            class=""
+                          >
+                            步骤3：
+                          </h2>
+                          <p id="bad22112-a83a-4cff-97db-78ecca7e48e0" class="">
+                            <strong
+                              >注意千万不要关闭run.bat运行窗口，关闭了这个窗口就等于关闭了stable
+                              diffusion</strong
+                            >
+                          </p>
+                          <p id="621d6407-0a86-4706-b70a-d648e7b7afb4" class="">
+                            当窗口出现以下输出的时候：
+                          </p>
+                          <figure
+                            id="3333395a-c7ed-4bc4-85a5-2525e768b573"
+                            class="image"
+                          >
+                            <a target=”_blank”
+                              href="{% static imgUrlPrefix %}/Untitled%207.png"
+                              ><img
+                                style="width: 1091px"
+                                src="{% static imgUrlPrefix %}/Untitled%207.png"
+                            /></a>
+                          </figure>
+                          <p id="ea357efb-46ee-49fe-964a-4a50c37f0aca" class="">
+                            打开任意浏览器，在网址栏输入:
+                            <a href="http://127.0.0.1:7860"
+                              >http://127.0.0.1:7860</a
+                            >
+                            即可进入stable diffusion 使用界面，如下图：
+                          </p>
+                          <figure
+                            id="7a6e66c9-06df-4ad9-91f0-b1935fb4614d"
+                            class="image"
+                          >
+                            <a target=”_blank”
+                              href="{% static imgUrlPrefix %}/Untitled%208.png"
+                              ><img
+                                style="width: 1920px"
+                                src="{% static imgUrlPrefix %}/Untitled%208.png"
+                            /></a>
+                          </figure>
+                          <p
+                            id="cfec03e5-2c1d-4bcc-9f6a-f00821cb5958"
+                            class=""
+                          ></p>
+                        </details>
+                      </li>
+                    </ul>
+                    <ul
+                      id="1f95788a-ecfd-463b-84fa-0b7b318301ef"
+                      class="toggle"
+                    >
+                      <li>
+                        <details >
+                          <summary>无科学上网</summary>
+                          <h3
+                            id="b3d232ef-505a-416f-bbb5-369017ec8af5"
+                            class=""
+                          >
+                            步骤一：
+                          </h3>
+                          <p id="917e1119-ad31-49a6-a2c1-cabda2f0156b" class="">
+                            访问以下网址获取安装包资源：
+                          </p>
+                          <figure id="15b68932-c023-4f13-80cc-0594e323f61d">
+                            <a target=”_blank”
+                              href="https://liaozhi.me/bilibiliResourceDownload"
+                              class="bookmark source"
+                              ><div class="bookmark-info">
+                                <div class="bookmark-text">
+                                  <div class="bookmark-title">
+                                    Bilibili Videos Resource Download
+                                  </div>
+                                </div>
+                                <div class="bookmark-href">
+                                  <img
+                                    src="https://liaozhi.me/static/web/img/websiteIcon.ico"
+                                    class="icon bookmark-icon"
+                                  />https://liaozhi.me/bilibiliResourceDownload
+                                </div>
+                              </div></a
+                            >
+                          </figure>
+                          <figure
+                            id="e314d831-3a98-4b47-a10e-a51cade381dd"
+                            class="image"
+                          >
+                            <a target=”_blank”
+                              href="{% static imgUrlPrefix %}/Untitled%209.png"
+                              ><img
+                                style="width: 864px"
+                                src="{% static imgUrlPrefix %}/Untitled%209.png"
+                            /></a>
+                          </figure>
+                          <h3
+                            id="9aea11ff-f387-4d0a-b388-c5cde1b059cf"
+                            class=""
+                          >
+                            步骤二：
+                          </h3>
+                          <p id="d08f67b4-698d-475d-bdc6-38e9e904f6e7" class="">
+                            解压后得到如下文件列表：
+                          </p>
+                          <figure
+                            id="ddd5cc79-1f8e-4e4b-8076-bbbafec3a421"
+                            class="image"
+                          >
+                            <a target=”_blank”
+                              href="{% static imgUrlPrefix %}/Untitled%2010.png"
+                              ><img
+                                style="width: 927px"
+                                src="{% static imgUrlPrefix %}/Untitled%2010.png"
+                            /></a>
+                          </figure>
+                          <h3
+                            id="8546d2bd-6581-49b5-b249-536534ec7154"
+                            class=""
+                          >
+                            步骤三：
+                          </h3>
+                          <p id="5417dc65-324e-4003-8542-943d11690ae0" class="">
+                            （注释：此文件夹经过修改，将python
+                            package的pip源设置为清华镜像源，将各种github包下载地址通过我制作的镜像网站:
+                            <a target=”_blank” href="https://github.liaozhi.me"
+                              >https://github.liaozhi.me</a
+                            >
+                            进行下载，故此时国内网络亦可进行高速安装）
+                          </p>
+                          <p id="2fa9f3b5-8ae6-4d8e-b627-9d8e63c57896" class="">
+                            点击下图红圈所框文件即可
+                          </p>
+                          <figure
+                            id="5c946484-72ae-4940-8c5e-8b1d494c7d21"
+                            class="image"
+                          >
+                            <a target=”_blank”
+                              href="{% static imgUrlPrefix %}/Untitled%2011.png"
+                              ><img
+                                style="width: 927px"
+                                src="{% static imgUrlPrefix %}/Untitled%2011.png"
+                            /></a>
+                          </figure>
+                          <p
+                            id="669945a2-5400-4a8c-9e77-9f067d13de3e"
+                            class=""
+                          ></p>
+                          <h3
+                            id="1f2763bc-8bf9-4f53-b79a-fa8bd3740bcd"
+                            class=""
+                          >
+                            步骤四：
+                          </h3>
+                          <p id="5066d550-e26b-4700-85b8-6cfcdf465806" class="">
+                            当出现以下画面输出后：
+                          </p>
+                          <figure
+                            id="21903afe-c647-42e6-8547-cf3c7735e3bd"
+                            class="image"
+                          >
+                            <a target=”_blank”
+                              href="{% static imgUrlPrefix %}/Untitled%2012.png"
+                              ><img
+                                style="width: 1091px"
+                                src="{% static imgUrlPrefix %}/Untitled%2012.png"
+                            /></a>
+                          </figure>
+                          <p id="b843fb19-d460-464d-b2a3-26935c239627" class="">
+                            在浏览器地址栏输入 :127.0.0.1:7860 即可进入 stable
+                            diffusion 页面，如下图所示：
+                          </p>
+                          <figure
+                            id="baf1a934-5936-4d75-866c-5ed95e83fa5e"
+                            class="image"
+                          >
+                            <a target=”_blank”
+                              href="{% static imgUrlPrefix %}/Untitled%208.png"
+                              ><img
+                                style="width: 1920px"
+                                src="{% static imgUrlPrefix %}/Untitled%208.png"
+                            /></a>
+                          </figure>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+              <ul id="3c8ac9fb-a1a0-4a5e-b69d-ea0a1f525b7d" class="toggle">
+                <li>
+                  <details >
+                    <summary><strong>Apple Silicon(Mac M1/M2)</strong></summary>
+                    <p id="da039ced-47fd-4eba-9c69-c7009499e66e" class="">
+                      目前我没有设备去测试，如果有此设备的小伙伴愿意贡献此次测试的请联系我哦😊
+                    </p>
+                  </details>
+                </li>
+              </ul>
+              <ul id="c4c59116-fe87-4ec8-b9a7-99834d14fed7" class="toggle">
+                <li>
+                  <details >
+                    <summary><strong>AMD GPU</strong></summary>
+                    <p id="e665d177-9999-4af2-8186-1030c7c64d99" class="">
+                      目前我没有设备去测试，如果有此设备的小伙伴愿意贡献此次测试的请联系我哦😊
+                    </p>
+                  </details>
+                </li>
+              </ul>
+            </blockquote>
+          </details>
+        </li>
+      </ul>
+      <ul id="0405f992-451d-462f-a070-44763fb29d94" class="toggle">
+        <li>
+          <details >
+            <summary><strong>安装提示词(prompts)翻译插件</strong></summary>
+            <blockquote id="b43c9537-1b26-45f9-9ef4-b205f950ae0b" class="">
+              相比大家在之前的例子当中也看到了，目前stable
+              diffusion仅仅接受英文提示词(prompts)去生成图片。那么对于英文不太好的小伙伴，我们伟大的github开源社区向大家提供了一个提示词(prompts)翻译插件。下面是插件的安装指导。
+            </blockquote>
+            <ul id="2fe846fc-874c-4c05-84d1-5dbb974a4bf3" class="toggle">
+              <li>
+                <details >
+                  <summary>有科学上网</summary>
+                  <figure
+                    id="e880157b-cf52-44bd-938d-b3566f359329"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2013.png"
+                      ><img
+                        style="width: 1904px"
+                        src="{% static imgUrlPrefix %}/Untitled%2013.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="dc34b18b-6581-461d-a217-ab182295c8e9"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2014.png"
+                      ><img
+                        style="width: 1914px"
+                        src="{% static imgUrlPrefix %}/Untitled%2014.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="265923ad-389b-498b-9e14-81c2a1e29ef0"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2015.png"
+                      ><img
+                        style="width: 1915px"
+                        src="{% static imgUrlPrefix %}/Untitled%2015.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="27ab4511-287b-4b4f-b346-5e0268a2768c"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2016.png"
+                      ><img
+                        style="width: 1909px"
+                        src="{% static imgUrlPrefix %}/Untitled%2016.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="77526e9c-84f6-4304-aa0e-2d79e53cc4ad"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2017.png"
+                      ><img
+                        style="width: 1881px"
+                        src="{% static imgUrlPrefix %}/Untitled%2017.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="5ae7611b-ab65-4f4a-b20c-64b63051224b"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2018.png"
+                      ><img
+                        style="width: 1866px"
+                        src="{% static imgUrlPrefix %}/Untitled%2018.png"
+                    /></a>
+                  </figure>
+                  <p id="23b210c7-6b5d-497b-abdb-8a9b94b14f10" class=""></p>
+                </details>
+              </li>
+            </ul>
+            <ul id="202f1ab0-1405-49bb-9e08-1ada3af44317" class="toggle">
+              <li>
+                <details >
+                  <summary>无科学上网</summary>
+                  <p id="f0c8a50a-ceff-45c0-876d-10c0504ead57" class="">
+                    进入以下网址:
+                  </p>
+                  <figure id="16d8c8f1-4ed4-465f-aa40-e6fcb2e72376">
+                    <a target=”_blank”
+                      href="https://github.liaozhi.me/Physton/sd-webui-prompt-all-in-one"
+                      class="bookmark source"
+                      ><div class="bookmark-info">
+                        <div class="bookmark-text">
+                          <div class="bookmark-title">
+                            GitHub - Physton/sd-webui-prompt-all-in-one: This is
+                            an extension based on sd-webui, aimed at improving
+                            the user experience of the prompt/negative prompt
+                            input box. It has a more intuitive and powerful
+                            input interface function, and provides automatic
+                            translation, history record, and bookmarking
+                            functions. 这是一个基于 sd-webui
+                            的扩展，旨在提高提示词/反向提示词输入框的使用体验。它拥有更直观、强大的输入界面功能，它提供了自动翻译、历史记录和收藏等功能。
+                          </div>
+                          <div class="bookmark-description">
+                            This is an extension based on sd-webui, aimed at
+                            improving the user experience of the prompt/negative
+                            prompt input box. It has a more intuitive and
+                            powerful input interface function, and provides a...
+                          </div>
+                        </div>
+                        <div class="bookmark-href">
+                          <img
+                            src="https://github.liaozhi.me/fluidicon.png"
+                            class="icon bookmark-icon"
+                          />https://github.liaozhi.me/Physton/sd-webui-prompt-all-in-one
+                        </div>
+                      </div>
+                      <img
+                        src="https://opengraph.githubassets.com/851089ae9456f85d30fd35ef9cad28b48b2d2d93166fa59c91607bbe1d012beb/Physton/sd-webui-prompt-all-in-one"
+                        class="bookmark-image"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="dc586dfd-3e88-457b-8ef3-8cd568e30a8f"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2019.png"
+                      ><img
+                        style="width: 1920px"
+                        src="{% static imgUrlPrefix %}/Untitled%2019.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="005a3168-cc01-4422-87bd-436cf99b666e"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2020.png"
+                      ><img
+                        style="width: 1920px"
+                        src="{% static imgUrlPrefix %}/Untitled%2020.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="cd52a71f-5da3-4a25-853f-a816ccb3b34d"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2021.png"
+                      ><img
+                        style="width: 1538px"
+                        src="{% static imgUrlPrefix %}/Untitled%2021.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="d6daff75-fa97-4379-ae90-57def01590ff"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2022.png"
+                      ><img
+                        style="width: 1737px"
+                        src="{% static imgUrlPrefix %}/Untitled%2022.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="117aefcd-03ab-40ee-abaf-1af5dc14e49d"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2023.png"
+                      ><img
+                        style="width: 1884px"
+                        src="{% static imgUrlPrefix %}/Untitled%2023.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="83a6ec2e-3b6b-49b0-b964-7aa7a4e98df3"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2018.png"
+                      ><img
+                        style="width: 1866px"
+                        src="{% static imgUrlPrefix %}/Untitled%2018.png"
+                    /></a>
+                  </figure>
+                </details>
+              </li>
+            </ul>
+            <ul id="8f580b0c-e455-441d-bfab-def5e719ebaf" class="toggle">
+              <li>
+                <details >
+                  <summary>插件使用引导</summary>
+                  <figure
+                    id="7ea4ebbf-7237-4d7a-98b6-ab4731d8412b"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2024.png"
+                      ><img
+                        style="width: 1901px"
+                        src="{% static imgUrlPrefix %}/Untitled%2024.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="51d60573-26ee-4a72-8f17-4a6056c1de76"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2025.png"
+                      ><img
+                        style="width: 1908px"
+                        src="{% static imgUrlPrefix %}/Untitled%2025.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="bef694e4-1070-4d40-9676-5f6134e86cce"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2026.png"
+                      ><img
+                        style="width: 1916px"
+                        src="{% static imgUrlPrefix %}/Untitled%2026.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="590da779-bf92-4065-9581-e4b394d19038"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2027.png"
+                      ><img
+                        style="width: 1886px"
+                        src="{% static imgUrlPrefix %}/Untitled%2027.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="c6b72509-a86f-4ba0-bea9-60f794fabf1c"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2028.png"
+                      ><img
+                        style="width: 1869px"
+                        src="{% static imgUrlPrefix %}/Untitled%2028.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="a5f3be52-a338-4dcc-9d00-2f8be39a0c09"
+                    class="image"
+                  >
+                    <a target=”_blank”
+                      href="{% static imgUrlPrefix %}/Untitled%2029.png"
+                      ><img
+                        style="width: 1901px"
+                        src="{% static imgUrlPrefix %}/Untitled%2029.png"
+                    /></a>
+                  </figure>
+                </details>
+              </li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+      <p id="8d12bc37-5abc-4349-b2ca-62e586d01363" class=""></p>
+    </div>
+  </article>
+</div>
+{% endblock %}
