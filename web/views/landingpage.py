@@ -3,11 +3,31 @@ from django.http import JsonResponse
 from django.views import View
 from django.utils import translation
 from django.utils.translation import gettext as _
+from web.models import Video
+import json
 
 class LandingPageView(View):
     def get(self,request,*args,**kwargs):
+        '''
+            carouselInfo structure
+            carouselInfo={
+                "coverImgSrc":coverImgSrc,
+                "docHref":docHref,
+                "coverCaptionSeriesName":coverCaptionSeriesName,
+                "coverCaptionVideoName":coverCaptionVideoName
+            }
+        '''
+        recommendedVideos=Video.objects.filter(showingAtLandingPage=True).all()    
+        carouselsInfo=[]
+        for vid in recommendedVideos:
+                infoJson=vid.carouselInfo
+                carouselInfo=json.loads(infoJson)
+                if vid.showingFirstly:
+                    carouselsInfo.insert(0,carouselInfo)
+                else:
+                    carouselsInfo.append(carouselInfo)
         context={
-
+            "carouselsInfo":carouselsInfo
         }
         return render(request,'web/landingpage.html',context)
 

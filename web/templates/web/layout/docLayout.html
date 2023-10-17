@@ -99,6 +99,25 @@
       scroll-margin-top: 120px;
       scroll-margin-bottom: 120px;
     }
+    #notionPageContainer .table{
+      --bs-table-bg: transparent;
+    }
+
+    #largerImgModalContainer .modal-content{
+      background-color: rgba(var(--bs-light-rgb),0.7);
+    }
+    #largerImgModalContainer .btn-close{
+      --bs-btn-close-opacity: 1;
+      --bs-btn-close-hover-opacity: 0.75;
+      --bs-btn-close-focus-opacity: 0.75;
+      --bs-btn-close-bg:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20%20viewBox%3D%220%200%20512%20512%22%3E%3Cstyle%3Esvg%7Bfill%3A%23198654%7D%3C%2Fstyle%3E%3Cpath%20d%3D%22M256%20512A256%20256%200%201%200%20256%200a256%20256%200%201%200%200%20512zM175%20175c9.4-9.4%2024.6-9.4%2033.9%200l47%2047%2047-47c9.4-9.4%2024.6-9.4%2033.9%200s9.4%2024.6%200%2033.9l-47%2047%2047%2047c9.4%209.4%209.4%2024.6%200%2033.9s-24.6%209.4-33.9%200l-47-47-47%2047c-9.4%209.4-24.6%209.4-33.9%200s-9.4-24.6%200-33.9l47-47-47-47c-9.4-9.4-9.4-24.6%200-33.9z%22%2F%3E%3C%2Fsvg%3E");
+      width:3rem;
+      height: 3rem;
+      padding:.125rem;
+      background:transparent var(--bs-btn-close-bg) center/3em auto no-repeat;
+      border-radius: 1.5rem;
+      
+    }
   </style>
 
   {% block title %}{% endblock title %} {% block css %} {% endblock css %}
@@ -106,6 +125,9 @@
 
 <body data-bs-spy="scroll" data-bs-target="#tableOfContents">
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="close">
+      <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+    </symbol>
     <symbol id="tableList" viewBox="0 0 512 512">
       <path
         d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm64 0v64h64V96H64zm384 0H192v64H448V96zM64 224v64h64V224H64zm384 0H192v64H448V224zM64 352v64h64V352H64zm384 0H192v64H448V352z" />
@@ -375,7 +397,7 @@
         <div class="offcanvas offcanvas-start bg-teal opacity-75" data-bs-scroll="true" tabindex="-1"
           id="tableOfContentsOffCanvas" >
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title">
+            <h5 class="offcanvas-title text-success">
               {% trans 'Table of Contents' %}
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
@@ -402,7 +424,13 @@
       </div>
     </div>
   </div>
-
+  <div id="largerImgModalContainer">
+    
+    {% block largerImgModalContainer %}
+      
+    {% endblock  %}
+      
+  </div>
   {% notification request %}
 
 

@@ -1,9 +1,23 @@
-import argparse
-import os,re,sys,shutil
-from bs4 import BeautifulSoup
-from urllib.parse import quote
-
+import os
+import sys
+import django
 baseDir=os.path.dirname(__file__)
+## django env setup
+sys.path.append(baseDir)
+os.environ.setdefault('DJANGO_SETTINGS_MODULE','liaozhiMe.settings')
+django.setup()
+
+import argparse
+import re,shutil
+from bs4 import BeautifulSoup
+from urllib.parse import quote,unquote
+import uuid
+import copy
+from web.models import Video
+from django.shortcuts import resolve_url
+import json
+
+
 def validateTutNo(value):
     if not re.match(r".*/.*"):
         raise argparse.ArgumentTypeError("You should input the tuturial No like the format of videoSeriesId/videoId ")
@@ -19,6 +33,29 @@ def copyFilesRecursively(srcDir,destinationDir):
         else:
             newFilePath=os.path.join(destinationDir,fileName)
             shutil.copy(filePath,newFilePath)
+def findSpecifiedScrAttr(tag):
+        if (tag.has_attr("href") and tag['href'].startswith(quote(assetsDirName))) or (tag.has_attr("src") and tag['src'].startswith(quote(assetsDirName))):
+            return True
+        else:
+            return False
+def excludeTableOfContentsLink(tag):
+        filterRes=None
+        if tag.name!='a':
+            filterRes=False
+            return filterRes
+        else:
+            if "table_of_contents-link" in tag.get("class",[]):
+                filterRes=False
+                return filterRes
+            else:
+                return True
+
+def validateImgWithAnchor(tag):
+    if tag.name=="a" and tag.find("img"):
+        return True
+    else:
+        return False
+
 
 parser=argparse.ArgumentParser(description="This is a python script for converting the exported notion html to my own blog html")
 parser.add_argument("-p","--propDir", type=str, required=True, help="Input path of the dir including the exported notion html.")
@@ -61,8 +98,13 @@ if checkInput=="y":
     with open(propHtmlPath,"rt",encoding="utf-8") as f:
         htmlContent=f.read()    
     soup=BeautifulSoup(htmlContent,"html.parser")
+
+    ## title tag
+    titleTag=soup.find("title")
+
     ## replace the id of links in table of contents starting with digit note: on cascade
     tableOfContentsLinks=soup.find_all("a",class_="table_of_contents-link")
+    print("============convert a id in nav tag starting with digit===========")
     for link in tableOfContentsLinks:
         href=link.get("href")
         pointId=href[1:]
@@ -70,15 +112,14 @@ if checkInput=="y":
             pointingElem=soup.find(id=pointId)
             pointingElem["id"]="_"+pointId
             link["href"]="#_"+pointId
+            print(f"===Detecting:{pointId},processing successfully===")
         else:
-            pass
+            pass   
+    print("============Coverting successfully===========")
 
     ## replace new img src prefix
-    def findSpecifiedScrAttr(tag):
-        if (tag.has_attr("href") and tag['href'].startswith(quote(assetsDirName))) or (tag.has_attr("src") and tag['src'].startswith(quote(assetsDirName))):
-            return True
-        else:
-            return False
+    print("===Replace prefixes of all img src and according anchor href with {% static imgUrlPrefix %}===")
+    print(".\n.\n.\n")
     withSrcAttrTags=soup.find_all(findSpecifiedScrAttr)
     for tag in withSrcAttrTags:
         if tag.has_attr("href"):
@@ -91,48 +132,132 @@ if checkInput=="y":
                 cTag['href']=cTag['href'].replace(quote(assetsDirName),'{% static imgUrlPrefix %}')
             if cTag.has_attr("src"):
                 cTag['src']=cTag['src'].replace(quote(assetsDirName),'{% static imgUrlPrefix %}')
-    ## reformat title tag
+    print("==============Replaced successfully===============")
 
-    titleTag=soup.find("title")
-    titleTagContent=titleTag.string
-    titleTag.string="{% trans "+"'"+titleTagContent+"' "+"%}"
-    print(f"---new title tag:{titleTag.prettify()}----")
-
-    ## add target="_blank" to the some anchor tags
-    def excludeTableOfContentsLink(tag):
-        filterRes=None
-        if tag.name!='a':
-            filterRes=False
-            return filterRes
-        else:
-            if "table_of_contents-link" in tag.get("class",[]):
-                filterRes=False
-                return filterRes
-            else:
-                return True
-    anchorTags=soup.find_all(excludeTableOfContentsLink)
-    for a in anchorTags:
-        a["target"]="_blank"
-    
     ## wrap the header image in a anchor
+    print("=====wrap the header image in a anchor and replace anchor href with default no bilibili video img=======")
+    print(".\n.\n.\n")
     coverImg=soup.find("img",class_="page-cover-image")
     bilibiliLinkTag=soup.new_tag("a",attrs={
             "target":"_blank"
         })
     if args.bilibiliVidHref=="#":
-        bilibiliLinkTag["href"]="#"
         coverImg["src"]="{% static 'web/img/nobilibiliVidImg.png' %}"
         coverImg["style"]="object-position:center 0"
     else:
         bilibiliLinkTag["href"]=args.bilibiliVidHref
-    bilibiliLinkTag.append(coverImg)
-    soup.find("header").insert(0,bilibiliLinkTag)
+    coverImg.wrap(bilibiliLinkTag)
+    print(f"=====wrap and replacement with {coverImg['src']} successfully")
+
+    ## detect the filename of page cover image and add it to video object in database
+    print("===========Save the carousel info============")
+    coverImgSrc=coverImg["src"]
+    if coverImgSrc=="{% static 'web/img/nobilibiliVidImg.png' %}":
+        coverImgSrc='/'.join(["/static"]+re.findall(r"{% static '(.*)' %}",coverImgSrc,re.DOTALL))
+    else:
+        coverImgSrc="/".join(["/static","web/img/bilibiliVideoDocTemplates"]+tuturialNo+[coverImgSrc.split("/",1)[1]]) 
+    docHref=resolve_url("web:bilibiliVideoDocs")+"?docTemplateUrl="+"web/bilibiliVideoDocTemplates/"+tuturialNo[0]+"/"+tuturialNo[1]
+    vidObj=Video.objects.get(id=tuturialNo[1])
+    coverCaptionSeriesName=vidObj.fromSeires.seriesName
+    coverCaptionVideoName=vidObj.videoName
+    carouselInfo={
+        "coverImgSrc":coverImgSrc,
+        "docHref":docHref,
+        "coverCaptionSeriesName":coverCaptionSeriesName,
+        "coverCaptionVideoName":coverCaptionVideoName
+    }
+    carouselInfoJson=json.dumps(carouselInfo)
+    vidObj.carouselInfo=carouselInfoJson
+    vidObj.save()
+    print("Carousel info:")
+    for k,v in carouselInfo.items():
+        print(f"{k}:{v}")
+    print("=============================================")
+
+
+    ## add target="_blank" to the some anchor tags
+    print("========add target='_blank' declaration to anchors except for nav link======")
+    print(".\n.\n.\n")
+    anchorTags=soup.find_all(excludeTableOfContentsLink)
+    for a in anchorTags:
+        a["target"]="_blank"
+    print("==========Adding Process Finished=============")
+    
+    ## add the table and table-responsive class to div.collection-content
+    print("======add the table and table-responsive class to div.collection-content=========")
+    print(".\n.\n.\n")
+    collectionContentTags=soup.find_all("div",class_="collection-content")
+    for tag in collectionContentTags:
+        tableTag=tag.find("table")
+        tableTag["class"]=" ".join(tableTag["class"]+["table","table-hover"])
+        tableResp=soup.new_tag("div",attrs={
+            "class":"table-responsive"
+        })
+        tag.wrap(tableResp)
+    print("======Adding process complete==========")
+
+    ## add a larger image modal to an image
+    print("==========Create larger img modal for each img==========")
+    print(".\n.\n.\n")
+    def createLargerImgModal(modalId,tag,type):
+        '''
+            type:1 for figure
+                 2 for anchor
+        '''
+        if type==1:
+            anchorTag=tag.find("a")
+        elif type==2:
+            anchorTag=tag
+        anchorTag["href"]=""
+        del anchorTag["target"]
+        anchorTag["data-bs-target"]="#largerImgModal_"+modalId
+        anchorTag["data-bs-toggle"]="modal"
+        imgTag=anchorTag.find("img")
+        imgSrc=imgTag["src"]
+        modalTag=soup.new_tag("div",attrs={
+            "class":"modal fade",
+            "id":"largerImgModal_"+modalId,
+        })
+        modalDialogTag=soup.new_tag("div",attrs={
+            "class":"modal-dialog modal-fullscreen",
+        })
+        modalContentTag=soup.new_tag("div",attrs={
+            "class":"modal-content positive-relative",
+            "data-bs-dismiss":"modal"
+        })
+        imgTag=soup.new_tag("img",attrs={
+            "src":imgSrc,
+            "class":"h-100 w-100 object-fit-contain"
+        })
+        modalContentTag.append(imgTag)
+        modalDialogTag.append(modalContentTag)
+        modalTag.append(modalDialogTag)
+        largerImgModals.append(modalTag.prettify())
+
+    largerImgModals=[]
+    collectionImgTags=[]
+    figureTags=soup.find_all("figure",class_="image")
+    ## I found that the image abemmded in the .collection-content don't have the figure tag to include it. I need to find a way to detect that
+    collectionContentTags=soup.find_all("div",class_="collection-content")
+    for tag in collectionContentTags:
+        anchorTags=tag.find_all(validateImgWithAnchor)
+        for anchorTag in anchorTags:
+            collectionImgTags.append(anchorTag)
+    
+    for tag in figureTags:
+        createLargerImgModal(modalId=tag["id"],tag=tag,type=1)
+    for tag in collectionImgTags:
+        createLargerImgModal(modalId=uuid.uuid4().hex,tag=tag,type=2)
+    print("==========Creating completed==========")
 
     ## delete some  styles of figure.callout
     calloutTags=soup.find_all("figure",class_="callout")
     for calloutTag in calloutTags:
         calloutTag["style"]='display:flex'
+    
     ## nav tag reconstruct
+    print("==========Nav tag reconstruct==========")
+    print(".\n.\n.\n")
     navTag=soup.find("nav")
     newNavTag=soup.new_tag("nav",attrs={
         "class":"nav nav-pills flex-column"
@@ -165,6 +290,9 @@ if checkInput=="y":
         currentIndentation=indentationLevel
     navTag.extract()
     articleTag=soup.find("article")
+    print("==========Nav tag reconstruct successfully==========")
+
+
     ## write new html file
     with open(templatePath,"wt",encoding="utf-8") as f:
         f.write('''
@@ -175,6 +303,11 @@ if checkInput=="y":
         f.write("{% block title %}\n"+titleTag.prettify()+"{% endblock %}\n")
         f.write("{% block tableOfContents %}\n"+newNavTag.prettify()+"{% endblock %}\n")
         f.write("{% block content %}\n"+articleTag.prettify()+"{% endblock %}\n")
+        largerImgModalsStr="{% block largerImgModalContainer %}\n"
+        for modal in largerImgModals:
+            largerImgModalsStr+=modal
+        largerImgModalsStr+="{% endblock %}"
+        f.write(largerImgModalsStr)
 
 
 

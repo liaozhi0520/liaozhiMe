@@ -4,7 +4,7 @@
 {% load i18n %}
 {% block title %}
 <title>
- {% trans '入门小白了解stable diffusion' %}
+ 入门小白了解stable diffusion
 </title>
 {% endblock %}
 {% block tableOfContents %}
@@ -23,7 +23,7 @@
  </a>
  <nav class="nav nav-pills flex-column">
   <a class="nav-link table_of_contents-indent-1" href="#c5cc7563-69f2-4452-a404-9040e7b92924">
-   从文字生成图像
+   从文字生成图像)
   </a>
   <a class="nav-link table_of_contents-indent-1" href="#_49c77f15-7339-425d-8b7e-4fff9f944fad">
    从图像生成图像
@@ -171,7 +171,7 @@
   <blockquote class="" id="0d5e13f7-51fb-4df4-9fcf-93c60cdda2c7">
    相信大家决定入手此教程的时候就已经通过网上的各种AI绘画的视频了解到了stable diffusion的作用了。简而言之，就是通过文字描述你想得到的图片，然后交给stable diffusion得到你想要的图片，这直接就使得一堆设计师拍案叫绝，我花一天P的图片，stable diffusion这小子仅仅十几秒（当然这是由你的电脑配置来决定的）就搞定了。例如：
    <figure class="image" id="6c341231-aaf3-4004-b62a-ff53eb1d1dba">
-    <a href="{% static imgUrlPrefix %}/Untitled.png" target="_blank">
+    <a data-bs-target="#largerImgModal_6c341231-aaf3-4004-b62a-ff53eb1d1dba" data-bs-toggle="modal" href="">
      <img src="{% static imgUrlPrefix %}/Untitled.png" style="width:384px"/>
     </a>
    </figure>
@@ -179,7 +179,7 @@
   <blockquote class="" id="87eced28-dc75-4616-801d-85f3fffe6079">
    那如果仅仅只有文字生成图片(text to image)这个功能，那么咱们这个教程系列很快就结束了。其实，stable diffusion自从由国外的 Stability AI 公司于2022年8月22日开源以来，已经发展出了强大丰富的stable diffusion生态系统：
    <figure class="image" id="3e27d9f6-6e6a-43a1-ab82-bf21fb39cdbf">
-    <a href="{% static imgUrlPrefix %}/Untitled-2023-08-08-2017.svg" target="_blank">
+    <a data-bs-target="#largerImgModal_3e27d9f6-6e6a-43a1-ab82-bf21fb39cdbf" data-bs-toggle="modal" href="">
      <img src="{% static imgUrlPrefix %}/Untitled-2023-08-08-2017.svg" style="width:384px"/>
     </a>
    </figure>
@@ -220,7 +220,7 @@
       </strong>
       )
       <figure class="image" id="5fbd07f5-e67a-41ea-9b94-2fc99bc09a4f">
-       <a href="{% static imgUrlPrefix %}/Untitled%201.png" target="_blank">
+       <a data-bs-target="#largerImgModal_5fbd07f5-e67a-41ea-9b94-2fc99bc09a4f" data-bs-toggle="modal" href="">
         <img src="{% static imgUrlPrefix %}/Untitled%201.png" style="width:747px"/>
        </a>
       </figure>
@@ -233,7 +233,7 @@
        </strong>
       </strong>
       <figure class="image" id="8d3fcad9-7818-493a-a336-8d36d19ccd6b">
-       <a href="{% static imgUrlPrefix %}/Untitled%202.png" target="_blank">
+       <a data-bs-target="#largerImgModal_8d3fcad9-7818-493a-a336-8d36d19ccd6b" data-bs-toggle="modal" href="">
         <img src="{% static imgUrlPrefix %}/Untitled%202.png" style="width:750px"/>
        </a>
       </figure>
@@ -246,7 +246,7 @@
        </strong>
       </strong>
       <figure class="image" id="83435634-e1f2-4de0-8538-cf85f283bc07">
-       <a href="{% static imgUrlPrefix %}/Untitled%203.png" target="_blank">
+       <a data-bs-target="#largerImgModal_83435634-e1f2-4de0-8538-cf85f283bc07" data-bs-toggle="modal" href="">
         <img src="{% static imgUrlPrefix %}/Untitled%203.png" style="width:757px"/>
        </a>
       </figure>
@@ -259,7 +259,7 @@
        </strong>
       </strong>
       <figure class="image" id="2499393c-48bf-45ce-a8a3-df7ae29cbbae">
-       <a href="{% static imgUrlPrefix %}/Untitled%204.png" target="_blank">
+       <a data-bs-target="#largerImgModal_2499393c-48bf-45ce-a8a3-df7ae29cbbae" data-bs-toggle="modal" href="">
         <img src="{% static imgUrlPrefix %}/Untitled%204.png" style="width:677px"/>
        </a>
       </figure>
@@ -272,7 +272,7 @@
        </strong>
       </strong>
       <figure class="image" id="a2f5a922-39cc-4d4c-a004-8e3295580001">
-       <a href="{% static imgUrlPrefix %}/r7in10iy7i1b1-1024x680.webp" target="_blank">
+       <a data-bs-target="#largerImgModal_a2f5a922-39cc-4d4c-a004-8e3295580001" data-bs-toggle="modal" href="">
         <img src="{% static imgUrlPrefix %}/r7in10iy7i1b1-1024x680.webp" style="width:1024px"/>
        </a>
       </figure>
@@ -287,12 +287,12 @@
    使用这种功能常常是你无法准确的描述你想要的图片，或者你想要一张与原图有相同特征的图片，此时你可以在原图的基础上生成其它的图像
   </p>
   <figure class="image" id="a73c3372-d9c7-4105-9082-fe0b6d7620d5">
-   <a href="{% static imgUrlPrefix %}/image.png" target="_blank">
+   <a data-bs-target="#largerImgModal_a73c3372-d9c7-4105-9082-fe0b6d7620d5" data-bs-toggle="modal" href="">
     <img src="{% static imgUrlPrefix %}/image.png" style="width:640px"/>
    </a>
   </figure>
   <figure class="image" id="ca830a33-2705-420f-846e-17cb7d3650b2">
-   <a href="{% static imgUrlPrefix %}/image-1.png" target="_blank">
+   <a data-bs-target="#largerImgModal_ca830a33-2705-420f-846e-17cb7d3650b2" data-bs-toggle="modal" href="">
     <img src="{% static imgUrlPrefix %}/image-1.png" style="width:640px"/>
    </a>
   </figure>
@@ -308,12 +308,12 @@
    比如这张图片的士兵太模糊(显然，画这张图的人还没有体验过双摄的魅力)，此时我可以圈出背景区域，然后使用局部重绘(inpainting)功能
   </p>
   <figure class="image" id="2dd4aa30-b77c-466e-9eb6-eeca04724450">
-   <a href="{% static imgUrlPrefix %}/5zavjhvczrpa1.webp" target="_blank">
+   <a data-bs-target="#largerImgModal_2dd4aa30-b77c-466e-9eb6-eeca04724450" data-bs-toggle="modal" href="">
     <img src="{% static imgUrlPrefix %}/5zavjhvczrpa1.webp" style="width:768px"/>
    </a>
   </figure>
   <figure class="image" id="57da1ef5-18e5-414a-9b42-4f6bc827af85">
-   <a href="{% static imgUrlPrefix %}/3l2jpvzdgqpa1.webp" target="_blank">
+   <a data-bs-target="#largerImgModal_57da1ef5-18e5-414a-9b42-4f6bc827af85" data-bs-toggle="modal" href="">
     <img src="{% static imgUrlPrefix %}/3l2jpvzdgqpa1.webp" style="width:960px"/>
    </a>
   </figure>
@@ -501,7 +501,7 @@
           点击下载红圈链接
          </p>
          <figure class="image" id="f625d13d-84fb-4ebf-87fe-9af2a81fc7ce">
-          <a href="{% static imgUrlPrefix %}/Untitled%205.png" target="_blank">
+          <a data-bs-target="#largerImgModal_f625d13d-84fb-4ebf-87fe-9af2a81fc7ce" data-bs-toggle="modal" href="">
            <img src="{% static imgUrlPrefix %}/Untitled%205.png" style="width:1530px"/>
           </a>
          </figure>
@@ -512,7 +512,7 @@
           解压后进入文件夹，如下图所示先运行 update.bat 文件，再运行 run.bat 文件
          </p>
          <figure class="image" id="47de185f-293e-43bd-9035-2eff0cf0976d">
-          <a href="{% static imgUrlPrefix %}/Untitled%206.png" target="_blank">
+          <a data-bs-target="#largerImgModal_47de185f-293e-43bd-9035-2eff0cf0976d" data-bs-toggle="modal" href="">
            <img src="{% static imgUrlPrefix %}/Untitled%206.png" style="width:828px"/>
           </a>
          </figure>
@@ -538,7 +538,7 @@
           当窗口出现以下输出的时候：
          </p>
          <figure class="image" id="3333395a-c7ed-4bc4-85a5-2525e768b573">
-          <a href="{% static imgUrlPrefix %}/Untitled%207.png" target="_blank">
+          <a data-bs-target="#largerImgModal_3333395a-c7ed-4bc4-85a5-2525e768b573" data-bs-toggle="modal" href="">
            <img src="{% static imgUrlPrefix %}/Untitled%207.png" style="width:1091px"/>
           </a>
          </figure>
@@ -550,7 +550,7 @@
           即可进入stable diffusion 使用界面，如下图：
          </p>
          <figure class="image" id="7a6e66c9-06df-4ad9-91f0-b1935fb4614d">
-          <a href="{% static imgUrlPrefix %}/Untitled%208.png" target="_blank">
+          <a data-bs-target="#largerImgModal_7a6e66c9-06df-4ad9-91f0-b1935fb4614d" data-bs-toggle="modal" href="">
            <img src="{% static imgUrlPrefix %}/Untitled%208.png" style="width:1920px"/>
           </a>
          </figure>
@@ -587,7 +587,7 @@
           </a>
          </figure>
          <figure class="image" id="e314d831-3a98-4b47-a10e-a51cade381dd">
-          <a href="{% static imgUrlPrefix %}/Untitled%209.png" target="_blank">
+          <a data-bs-target="#largerImgModal_e314d831-3a98-4b47-a10e-a51cade381dd" data-bs-toggle="modal" href="">
            <img src="{% static imgUrlPrefix %}/Untitled%209.png" style="width:864px"/>
           </a>
          </figure>
@@ -598,7 +598,7 @@
           解压后得到如下文件列表：
          </p>
          <figure class="image" id="ddd5cc79-1f8e-4e4b-8076-bbbafec3a421">
-          <a href="{% static imgUrlPrefix %}/Untitled%2010.png" target="_blank">
+          <a data-bs-target="#largerImgModal_ddd5cc79-1f8e-4e4b-8076-bbbafec3a421" data-bs-toggle="modal" href="">
            <img src="{% static imgUrlPrefix %}/Untitled%2010.png" style="width:927px"/>
           </a>
          </figure>
@@ -616,7 +616,7 @@
           点击下图红圈所框文件即可
          </p>
          <figure class="image" id="5c946484-72ae-4940-8c5e-8b1d494c7d21">
-          <a href="{% static imgUrlPrefix %}/Untitled%2011.png" target="_blank">
+          <a data-bs-target="#largerImgModal_5c946484-72ae-4940-8c5e-8b1d494c7d21" data-bs-toggle="modal" href="">
            <img src="{% static imgUrlPrefix %}/Untitled%2011.png" style="width:927px"/>
           </a>
          </figure>
@@ -629,7 +629,7 @@
           当出现以下画面输出后：
          </p>
          <figure class="image" id="21903afe-c647-42e6-8547-cf3c7735e3bd">
-          <a href="{% static imgUrlPrefix %}/Untitled%2012.png" target="_blank">
+          <a data-bs-target="#largerImgModal_21903afe-c647-42e6-8547-cf3c7735e3bd" data-bs-toggle="modal" href="">
            <img src="{% static imgUrlPrefix %}/Untitled%2012.png" style="width:1091px"/>
           </a>
          </figure>
@@ -637,7 +637,7 @@
           在浏览器地址栏输入 :127.0.0.1:7860 即可进入 stable diffusion 页面，如下图所示：
          </p>
          <figure class="image" id="baf1a934-5936-4d75-866c-5ed95e83fa5e">
-          <a href="{% static imgUrlPrefix %}/Untitled%208.png" target="_blank">
+          <a data-bs-target="#largerImgModal_baf1a934-5936-4d75-866c-5ed95e83fa5e" data-bs-toggle="modal" href="">
            <img src="{% static imgUrlPrefix %}/Untitled%208.png" style="width:1920px"/>
           </a>
          </figure>
@@ -692,32 +692,32 @@
       有科学上网
      </summary>
      <figure class="image" id="e880157b-cf52-44bd-938d-b3566f359329">
-      <a href="{% static imgUrlPrefix %}/Untitled%2013.png" target="_blank">
+      <a data-bs-target="#largerImgModal_e880157b-cf52-44bd-938d-b3566f359329" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2013.png" style="width:1904px"/>
       </a>
      </figure>
      <figure class="image" id="dc34b18b-6581-461d-a217-ab182295c8e9">
-      <a href="{% static imgUrlPrefix %}/Untitled%2014.png" target="_blank">
+      <a data-bs-target="#largerImgModal_dc34b18b-6581-461d-a217-ab182295c8e9" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2014.png" style="width:1914px"/>
       </a>
      </figure>
      <figure class="image" id="265923ad-389b-498b-9e14-81c2a1e29ef0">
-      <a href="{% static imgUrlPrefix %}/Untitled%2015.png" target="_blank">
+      <a data-bs-target="#largerImgModal_265923ad-389b-498b-9e14-81c2a1e29ef0" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2015.png" style="width:1915px"/>
       </a>
      </figure>
      <figure class="image" id="27ab4511-287b-4b4f-b346-5e0268a2768c">
-      <a href="{% static imgUrlPrefix %}/Untitled%2016.png" target="_blank">
+      <a data-bs-target="#largerImgModal_27ab4511-287b-4b4f-b346-5e0268a2768c" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2016.png" style="width:1909px"/>
       </a>
      </figure>
      <figure class="image" id="77526e9c-84f6-4304-aa0e-2d79e53cc4ad">
-      <a href="{% static imgUrlPrefix %}/Untitled%2017.png" target="_blank">
+      <a data-bs-target="#largerImgModal_77526e9c-84f6-4304-aa0e-2d79e53cc4ad" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2017.png" style="width:1881px"/>
       </a>
      </figure>
      <figure class="image" id="5ae7611b-ab65-4f4a-b20c-64b63051224b">
-      <a href="{% static imgUrlPrefix %}/Untitled%2018.png" target="_blank">
+      <a data-bs-target="#largerImgModal_5ae7611b-ab65-4f4a-b20c-64b63051224b" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2018.png" style="width:1866px"/>
       </a>
      </figure>
@@ -753,32 +753,32 @@
       </a>
      </figure>
      <figure class="image" id="dc586dfd-3e88-457b-8ef3-8cd568e30a8f">
-      <a href="{% static imgUrlPrefix %}/Untitled%2019.png" target="_blank">
+      <a data-bs-target="#largerImgModal_dc586dfd-3e88-457b-8ef3-8cd568e30a8f" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2019.png" style="width:1920px"/>
       </a>
      </figure>
      <figure class="image" id="005a3168-cc01-4422-87bd-436cf99b666e">
-      <a href="{% static imgUrlPrefix %}/Untitled%2020.png" target="_blank">
+      <a data-bs-target="#largerImgModal_005a3168-cc01-4422-87bd-436cf99b666e" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2020.png" style="width:1920px"/>
       </a>
      </figure>
      <figure class="image" id="cd52a71f-5da3-4a25-853f-a816ccb3b34d">
-      <a href="{% static imgUrlPrefix %}/Untitled%2021.png" target="_blank">
+      <a data-bs-target="#largerImgModal_cd52a71f-5da3-4a25-853f-a816ccb3b34d" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2021.png" style="width:1538px"/>
       </a>
      </figure>
      <figure class="image" id="d6daff75-fa97-4379-ae90-57def01590ff">
-      <a href="{% static imgUrlPrefix %}/Untitled%2022.png" target="_blank">
+      <a data-bs-target="#largerImgModal_d6daff75-fa97-4379-ae90-57def01590ff" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2022.png" style="width:1737px"/>
       </a>
      </figure>
      <figure class="image" id="117aefcd-03ab-40ee-abaf-1af5dc14e49d">
-      <a href="{% static imgUrlPrefix %}/Untitled%2023.png" target="_blank">
+      <a data-bs-target="#largerImgModal_117aefcd-03ab-40ee-abaf-1af5dc14e49d" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2023.png" style="width:1884px"/>
       </a>
      </figure>
      <figure class="image" id="83a6ec2e-3b6b-49b0-b964-7aa7a4e98df3">
-      <a href="{% static imgUrlPrefix %}/Untitled%2018.png" target="_blank">
+      <a data-bs-target="#largerImgModal_83a6ec2e-3b6b-49b0-b964-7aa7a4e98df3" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2018.png" style="width:1866px"/>
       </a>
      </figure>
@@ -792,32 +792,32 @@
       插件使用引导
      </summary>
      <figure class="image" id="7ea4ebbf-7237-4d7a-98b6-ab4731d8412b">
-      <a href="{% static imgUrlPrefix %}/Untitled%2024.png" target="_blank">
+      <a data-bs-target="#largerImgModal_7ea4ebbf-7237-4d7a-98b6-ab4731d8412b" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2024.png" style="width:1901px"/>
       </a>
      </figure>
      <figure class="image" id="51d60573-26ee-4a72-8f17-4a6056c1de76">
-      <a href="{% static imgUrlPrefix %}/Untitled%2025.png" target="_blank">
+      <a data-bs-target="#largerImgModal_51d60573-26ee-4a72-8f17-4a6056c1de76" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2025.png" style="width:1908px"/>
       </a>
      </figure>
      <figure class="image" id="bef694e4-1070-4d40-9676-5f6134e86cce">
-      <a href="{% static imgUrlPrefix %}/Untitled%2026.png" target="_blank">
+      <a data-bs-target="#largerImgModal_bef694e4-1070-4d40-9676-5f6134e86cce" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2026.png" style="width:1916px"/>
       </a>
      </figure>
      <figure class="image" id="590da779-bf92-4065-9581-e4b394d19038">
-      <a href="{% static imgUrlPrefix %}/Untitled%2027.png" target="_blank">
+      <a data-bs-target="#largerImgModal_590da779-bf92-4065-9581-e4b394d19038" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2027.png" style="width:1886px"/>
       </a>
      </figure>
      <figure class="image" id="c6b72509-a86f-4ba0-bea9-60f794fabf1c">
-      <a href="{% static imgUrlPrefix %}/Untitled%2028.png" target="_blank">
+      <a data-bs-target="#largerImgModal_c6b72509-a86f-4ba0-bea9-60f794fabf1c" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2028.png" style="width:1869px"/>
       </a>
      </figure>
      <figure class="image" id="a5f3be52-a338-4dcc-9d00-2f8be39a0c09">
-      <a href="{% static imgUrlPrefix %}/Untitled%2029.png" target="_blank">
+      <a data-bs-target="#largerImgModal_a5f3be52-a338-4dcc-9d00-2f8be39a0c09" data-bs-toggle="modal" href="">
        <img src="{% static imgUrlPrefix %}/Untitled%2029.png" style="width:1901px"/>
       </a>
      </figure>
@@ -875,7 +875,7 @@
      <blockquote class="" id="1681cddd-860d-4d04-9f5a-7c47cb0d790c">
       这款插件的效果是这样的：（它将名词的中文和英文都显示出来了，这与webui内置的翻译功能是不符合的，因为一般来说翻译功能仅仅支持显示一种语言，所以我们需要把内置的翻译功能给取消掉，使用插件的翻译功能，这样我们既可以方便地使用stable diffusion，也可以顺带学点英文）
       <figure class="image" id="8d7ba93b-b2f7-4293-bd01-49270af2518b">
-       <a href="{% static imgUrlPrefix %}/Untitled%2030.png" target="_blank">
+       <a data-bs-target="#largerImgModal_8d7ba93b-b2f7-4293-bd01-49270af2518b" data-bs-toggle="modal" href="">
         <img src="{% static imgUrlPrefix %}/Untitled%2030.png" style="width:1920px"/>
        </a>
       </figure>
@@ -886,17 +886,17 @@
        <li>
         先确保禁止掉webui内置的翻译功能
         <figure class="image" id="6214298c-2b35-4678-b8eb-c2bd759a0855">
-         <a href="{% static imgUrlPrefix %}/Untitled%2031.png" target="_blank">
+         <a data-bs-target="#largerImgModal_6214298c-2b35-4678-b8eb-c2bd759a0855" data-bs-toggle="modal" href="">
           <img src="{% static imgUrlPrefix %}/Untitled%2031.png" style="width:1852px"/>
          </a>
         </figure>
         <figure class="image" id="291de62f-dcff-42fa-b6d8-6919f48d8545">
-         <a href="{% static imgUrlPrefix %}/Untitled%2032.png" target="_blank">
+         <a data-bs-target="#largerImgModal_291de62f-dcff-42fa-b6d8-6919f48d8545" data-bs-toggle="modal" href="">
           <img src="{% static imgUrlPrefix %}/Untitled%2032.png" style="width:1844px"/>
          </a>
         </figure>
         <figure class="image" id="797bc4fe-e78c-4ff2-9021-e32f2e7b299f">
-         <a href="{% static imgUrlPrefix %}/Untitled%2033.png" target="_blank">
+         <a data-bs-target="#largerImgModal_797bc4fe-e78c-4ff2-9021-e32f2e7b299f" data-bs-toggle="modal" href="">
           <img src="{% static imgUrlPrefix %}/Untitled%2033.png" style="width:1919px"/>
          </a>
         </figure>
@@ -906,12 +906,12 @@
        <li>
         然后启用插件的翻译功能
         <figure class="image" id="ab23db44-7d75-495c-946c-2f14b334688c">
-         <a href="{% static imgUrlPrefix %}/Untitled%2034.png" target="_blank">
+         <a data-bs-target="#largerImgModal_ab23db44-7d75-495c-946c-2f14b334688c" data-bs-toggle="modal" href="">
           <img src="{% static imgUrlPrefix %}/Untitled%2034.png" style="width:1863px"/>
          </a>
         </figure>
         <figure class="image" id="d4d3ffb6-d64f-4df6-b50f-2e9740504762">
-         <a href="{% static imgUrlPrefix %}/Untitled%2035.png" target="_blank">
+         <a data-bs-target="#largerImgModal_d4d3ffb6-d64f-4df6-b50f-2e9740504762" data-bs-toggle="modal" href="">
           <img src="{% static imgUrlPrefix %}/Untitled%2035.png" style="width:1919px"/>
          </a>
         </figure>
@@ -949,12 +949,12 @@
             </a>
            </figure>
            <figure class="image" id="e325a3ad-bdbc-4fb1-bca1-5cdcb668276e">
-            <a href="{% static imgUrlPrefix %}/Untitled%2036.png" target="_blank">
+            <a data-bs-target="#largerImgModal_e325a3ad-bdbc-4fb1-bca1-5cdcb668276e" data-bs-toggle="modal" href="">
              <img src="{% static imgUrlPrefix %}/Untitled%2036.png" style="width:1905px"/>
             </a>
            </figure>
            <figure class="image" id="2a196c4b-1d81-4302-a74a-53854b16fd37">
-            <a href="{% static imgUrlPrefix %}/Untitled%2037.png" target="_blank">
+            <a data-bs-target="#largerImgModal_2a196c4b-1d81-4302-a74a-53854b16fd37" data-bs-toggle="modal" href="">
              <img src="{% static imgUrlPrefix %}/Untitled%2037.png" style="width:1133px"/>
             </a>
            </figure>
@@ -989,12 +989,12 @@
             </a>
            </figure>
            <figure class="image" id="0942a017-437b-4c4d-ab63-ffd62c547506">
-            <a href="{% static imgUrlPrefix %}/Untitled%2038.png" target="_blank">
+            <a data-bs-target="#largerImgModal_0942a017-437b-4c4d-ab63-ffd62c547506" data-bs-toggle="modal" href="">
              <img src="{% static imgUrlPrefix %}/Untitled%2038.png" style="width:1918px"/>
             </a>
            </figure>
            <figure class="image" id="efa3edb8-cd3a-4341-b43a-18ad8173c4a7">
-            <a href="{% static imgUrlPrefix %}/Untitled%2039.png" target="_blank">
+            <a data-bs-target="#largerImgModal_efa3edb8-cd3a-4341-b43a-18ad8173c4a7" data-bs-toggle="modal" href="">
              <img src="{% static imgUrlPrefix %}/Untitled%2039.png" style="width:1125px"/>
             </a>
            </figure>
@@ -1007,7 +1007,7 @@
        <li>
         让插件加载中文翻译安装文件
         <figure class="image" id="8d8fa558-e73b-4ab5-899a-1baf660a159d">
-         <a href="{% static imgUrlPrefix %}/Untitled%2040.png" target="_blank">
+         <a data-bs-target="#largerImgModal_8d8fa558-e73b-4ab5-899a-1baf660a159d" data-bs-toggle="modal" href="">
           <img src="{% static imgUrlPrefix %}/Untitled%2040.png" style="width:1858px"/>
          </a>
         </figure>
@@ -1017,7 +1017,7 @@
        <li>
         重启webui，重新加载插件，使翻译效果生效
         <figure class="image" id="50a38ce5-3d71-4359-ab87-9a731628b16f">
-         <a href="{% static imgUrlPrefix %}/Untitled%2041.png" target="_blank">
+         <a data-bs-target="#largerImgModal_50a38ce5-3d71-4359-ab87-9a731628b16f" data-bs-toggle="modal" href="">
           <img src="{% static imgUrlPrefix %}/Untitled%2041.png" style="width:1920px"/>
          </a>
         </figure>
@@ -1031,4 +1031,356 @@
   </p>
  </div>
 </article>
+{% endblock %}
+{% block largerImgModalContainer %}
+<div class="modal fade" id="largerImgModal_6c341231-aaf3-4004-b62a-ff53eb1d1dba">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_3e27d9f6-6e6a-43a1-ab82-bf21fb39cdbf">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled-2023-08-08-2017.svg"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_5fbd07f5-e67a-41ea-9b94-2fc99bc09a4f">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%201.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_8d3fcad9-7818-493a-a336-8d36d19ccd6b">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%202.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_83435634-e1f2-4de0-8538-cf85f283bc07">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%203.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_2499393c-48bf-45ce-a8a3-df7ae29cbbae">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%204.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_a2f5a922-39cc-4d4c-a004-8e3295580001">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/r7in10iy7i1b1-1024x680.webp"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_a73c3372-d9c7-4105-9082-fe0b6d7620d5">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/image.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_ca830a33-2705-420f-846e-17cb7d3650b2">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/image-1.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_2dd4aa30-b77c-466e-9eb6-eeca04724450">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/5zavjhvczrpa1.webp"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_57da1ef5-18e5-414a-9b42-4f6bc827af85">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/3l2jpvzdgqpa1.webp"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_f625d13d-84fb-4ebf-87fe-9af2a81fc7ce">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%205.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_47de185f-293e-43bd-9035-2eff0cf0976d">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%206.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_3333395a-c7ed-4bc4-85a5-2525e768b573">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%207.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_7a6e66c9-06df-4ad9-91f0-b1935fb4614d">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%208.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_e314d831-3a98-4b47-a10e-a51cade381dd">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%209.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_ddd5cc79-1f8e-4e4b-8076-bbbafec3a421">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2010.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_5c946484-72ae-4940-8c5e-8b1d494c7d21">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2011.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_21903afe-c647-42e6-8547-cf3c7735e3bd">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2012.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_baf1a934-5936-4d75-866c-5ed95e83fa5e">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%208.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_e880157b-cf52-44bd-938d-b3566f359329">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2013.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_dc34b18b-6581-461d-a217-ab182295c8e9">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2014.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_265923ad-389b-498b-9e14-81c2a1e29ef0">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2015.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_27ab4511-287b-4b4f-b346-5e0268a2768c">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2016.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_77526e9c-84f6-4304-aa0e-2d79e53cc4ad">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2017.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_5ae7611b-ab65-4f4a-b20c-64b63051224b">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2018.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_dc586dfd-3e88-457b-8ef3-8cd568e30a8f">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2019.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_005a3168-cc01-4422-87bd-436cf99b666e">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2020.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_cd52a71f-5da3-4a25-853f-a816ccb3b34d">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2021.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_d6daff75-fa97-4379-ae90-57def01590ff">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2022.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_117aefcd-03ab-40ee-abaf-1af5dc14e49d">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2023.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_83a6ec2e-3b6b-49b0-b964-7aa7a4e98df3">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2018.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_7ea4ebbf-7237-4d7a-98b6-ab4731d8412b">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2024.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_51d60573-26ee-4a72-8f17-4a6056c1de76">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2025.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_bef694e4-1070-4d40-9676-5f6134e86cce">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2026.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_590da779-bf92-4065-9581-e4b394d19038">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2027.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_c6b72509-a86f-4ba0-bea9-60f794fabf1c">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2028.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_a5f3be52-a338-4dcc-9d00-2f8be39a0c09">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2029.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_8d7ba93b-b2f7-4293-bd01-49270af2518b">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2030.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_6214298c-2b35-4678-b8eb-c2bd759a0855">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2031.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_291de62f-dcff-42fa-b6d8-6919f48d8545">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2032.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_797bc4fe-e78c-4ff2-9021-e32f2e7b299f">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2033.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_ab23db44-7d75-495c-946c-2f14b334688c">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2034.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_d4d3ffb6-d64f-4df6-b50f-2e9740504762">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2035.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_e325a3ad-bdbc-4fb1-bca1-5cdcb668276e">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2036.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_2a196c4b-1d81-4302-a74a-53854b16fd37">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2037.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_0942a017-437b-4c4d-ab63-ffd62c547506">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2038.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_efa3edb8-cd3a-4341-b43a-18ad8173c4a7">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2039.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_8d8fa558-e73b-4ab5-899a-1baf660a159d">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2040.png"/>
+  </div>
+ </div>
+</div>
+<div class="modal fade" id="largerImgModal_50a38ce5-3d71-4359-ab87-9a731628b16f">
+ <div class="modal-dialog modal-fullscreen">
+  <div class="modal-content positive-relative" data-bs-dismiss="modal">
+   <img class="h-100 w-100 object-fit-contain" src="{% static imgUrlPrefix %}/Untitled%2041.png"/>
+  </div>
+ </div>
+</div>
 {% endblock %}

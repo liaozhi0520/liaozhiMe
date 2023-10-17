@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class VideoSeries(models.Model):
@@ -9,6 +10,9 @@ class VideoSeries(models.Model):
 class Video(models.Model):
     videoName=models.CharField(max_length=128,unique=True)
     fromSeires=models.ForeignKey(to='VideoSeries',on_delete=models.CASCADE)
+    showingAtLandingPage=models.BooleanField(default=False)
+    showingFirstly=models.BooleanField(default=False)
+    carouselInfo=models.CharField(max_length=3000,default=None) ## json format info
     createdAt=models.DateTimeField(auto_now_add=True)
 
 class Resource(models.Model):

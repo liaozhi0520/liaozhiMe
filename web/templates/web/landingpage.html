@@ -5,10 +5,122 @@
 	<title>{% trans 'Landing Page' %}</title>
 {% endblock %}
 {% block css %}
-
+    <style>
+        :root{
+            --bd-purple: #4c0bce;
+            --bd-violet: #712cf9;
+            --bd-accent: #ffe484;
+            --bd-violet-rgb: 112.520718,44.062154,249.437846;
+            --bd-accent-rgb: 255,228,132;
+            --bd-pink-rgb: 214,51,132;
+            --bd-teal-rgb: 32,201,151;
+            --bd-violet-bg: var(--bd-violet);
+            --bd-toc-color: var(--bd-violet);
+            --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), .1);
+            --bd-callout-link: 10,88,202;
+            --bd-callout-code-color: #ab296a;
+            --bd-pre-bg: var(--bs-tertiary-bg);
+        }
+        body,
+        #carouselContainer .carousel-item .card .card-body{
+            background-repeat: no-repeat;
+            background-image: linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%),radial-gradient(ellipse at top left, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),radial-gradient(ellipse at top right, rgba(var(--bd-accent-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center right, rgba(var(--bd-violet-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center left, rgba(var(--bd-pink-rgb), 0.5), transparent 50%);
+        }
+        #carouselContainer .carousel-item .card img{
+            display: block;
+            width: 100%;
+            max-height: 30vh;
+            object-fit: cover;
+            object-position: center 0;
+        }
+        #carouselContainer .carousel-item .card .card-text,
+        #carouselContainer .carousel-item .card .card-title{
+            margin-bottom:0.25rem
+        }
+        .iconConfig{
+            fill: currentColor;
+            vertical-align: -.25rem;
+        }
+        #websiteIconContainer svg{
+            animation: initialBounce 1s linear 1;
+        }
+        #websiteIconContainer svg:hover{
+            animation: bounce 1s linear 1;
+        }
+        @keyframes initialBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
 {% endblock %}
 {% block content %}
-    <img src="{% static 'web/img/websiteLandingpageBg.jpg' %}" class="img-fluid">
+    <div class="text-center my-1" id="websiteIconContainer">
+        <svg class="iconConfig" height="40px" width="40px">
+            <use xlink:href="#websiteIcon"></use>
+        </svg>
+    </div>
+    <div id="carouselContainer" class="col-xl-8 col-lg-9 col-md-10 col-sm-11 col-12 mx-auto">
+        <h4 class="fw-semibold text-center">{% trans 'Recommended Doc To Read' %}</h4>
+        <div id="docRecommendationCarousel" class="carousel slide carousel-dark" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                {% for carouselInfo in carouselsInfo  %}
+                    <button type="button" data-bs-target="#docRecommendationCarousel" data-bs-slide-to="{{ forloop.counter0}}" class="{% if forloop.first %}active{% endif %}"></button>
+                    {%empty%}
+                    <button type="button" data-bs-target="#docRecommendationCarousel" data-bs-slide-to="0" class="active"></button>
+                {% endfor %}
+            </div>
+            <div class="carousel-inner">
+                {% for carouselInfo in carouselsInfo %}
+                    <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                        <div class="card mb-3">
+                            <img src="{{ carouselInfo.coverImgSrc }}" class="card-img-top">
+                            <div class="card-body text-center">
+                              <h5 class="card-title">{{ carouselInfo.coverCaptionSeriesName }}</h5>
+                              <p class="card-text">{{ carouselInfo.coverCaptionVideoName }}</p>
+                              <a class="btn btn-outline-success mb-2" href="{{ carouselInfo.docHref }}" type="button">{% trans 'Go Read' %}<svg class="iconConfig ms-2" height="25px" width="25px"><use xlink:href="#chevronRight"></use></svg></a>
+                            </div>
+                          </div>
+                    </div>
+                    {% empty %}
+                    <div class="carousel-item active">
+                        <div class="card mb-3">
+                            <img src="{% static 'web/img/404NotFound.jpg' %}" class="card-img-top">
+                            <div class="card-body text-center">
+                              <h5 class="card-title">{% trans 'No Recommendation' %}</h5>
+                              <p class="card-text">{% trans "There is no recommended doc yet. You can set it or just don't use this carousel in production env" %}</p>
+                              <a class="btn btn-outline-success mb-2 disabled" href="#" type="button" >Go watch</a>
+                            </div>
+                          </div>
+                    </div>
+                    
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#docRecommendationCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#docRecommendationCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
 {% endblock %}
 {% block js %}
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-29 11:34+0800\n"
+"POT-Creation-Date: 2023-10-18 01:39+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,134 +25,159 @@ msgstr "中文"
 msgid "English"
 msgstr "英文"
 
-#: .\web\templates\web\bilibiliVideoDocTemplates\1\1\doc.html:3
-msgid "Pure Beginner Guide"
-msgstr "入门小白了解"
-
-#: .\web\templates\web\bilibiliVideoDocTemplates\1\2\doc.html:4
-msgid "Model"
-msgstr "模型"
-
 #: .\web\templates\web\bilibiliVideoDocTemplates\docNotFound.html:3
 #: .\web\templates\web\bilibiliVideoDocTemplates\docNotFound.html:7
 msgid "Doc Not Found"
 msgstr "文档未找到"
 
 #: .\web\templates\web\landingpage.html:5
-#: .\web\templates\web\layout\basic.html:255
-#: .\web\templates\web\layout\docLayout.html:304
+#: .\web\templates\web\layout\basic.html:259
+#: .\web\templates\web\layout\docLayout.html:284
 msgid "Landing Page"
 msgstr "首页"
 
-#: .\web\templates\web\layout\basic.html:70
-#: .\web\templates\web\layout\basic.html:288
-#: .\web\templates\web\layout\docLayout.html:119
-#: .\web\templates\web\layout\docLayout.html:329
+#: .\web\templates\web\landingpage.html:81
+msgid "Recommended Doc To Read"
+msgstr "推荐阅读"
+
+#: .\web\templates\web\landingpage.html:98
+msgid "Go Read"
+msgstr "阅读"
+
+#: .\web\templates\web\landingpage.html:107
+msgid "No Recommendation"
+msgstr "暂无推荐文章"
+
+#: .\web\templates\web\landingpage.html:108
+msgid ""
+"There is no recommended doc yet. You can set it or just don't use this "
+"carousel in production env"
+msgstr "目前还未设置推荐文章。在生产环境当中，请进行设置或者不使用此Carousel"
+
+#: .\web\templates\web\layout\basic.html:74
+#: .\web\templates\web\layout\basic.html:292
+#: .\web\templates\web\layout\docLayout.html:178
+#: .\web\templates\web\layout\docLayout.html:299
 msgid "Contact Me"
 msgstr "联系我"
 
-#: .\web\templates\web\layout\basic.html:91
-#: .\web\templates\web\layout\docLayout.html:140
+#: .\web\templates\web\layout\basic.html:95
+#: .\web\templates\web\layout\docLayout.html:189
 msgid "Wechat"
 msgstr "微信"
 
-#: .\web\templates\web\layout\basic.html:102
-#: .\web\templates\web\layout\docLayout.html:151
+#: .\web\templates\web\layout\basic.html:106
+#: .\web\templates\web\layout\docLayout.html:195
 msgid "Email"
 msgstr "邮箱"
 
-#: .\web\templates\web\layout\basic.html:113
-#: .\web\templates\web\layout\docLayout.html:162
+#: .\web\templates\web\layout\basic.html:117
+#: .\web\templates\web\layout\docLayout.html:201
 msgid "Bilibili"
 msgstr "Bilibili"
 
-#: .\web\templates\web\layout\basic.html:134
-#: .\web\templates\web\layout\basic.html:167
-#: .\web\templates\web\layout\basic.html:195
-#: .\web\templates\web\layout\docLayout.html:183
-#: .\web\templates\web\layout\docLayout.html:216
-#: .\web\templates\web\layout\docLayout.html:244
+#: .\web\templates\web\layout\basic.html:138
+#: .\web\templates\web\layout\basic.html:171
+#: .\web\templates\web\layout\basic.html:199
+#: .\web\templates\web\layout\docLayout.html:212
+#: .\web\templates\web\layout\docLayout.html:231
+#: .\web\templates\web\layout\docLayout.html:250
 msgid "Close"
 msgstr "关闭"
 
-#: .\web\templates\web\layout\basic.html:150
-#: .\web\templates\web\layout\docLayout.html:199
+#: .\web\templates\web\layout\basic.html:154
+#: .\web\templates\web\layout\docLayout.html:220
 msgid "Email Me"
 msgstr "给我发邮件"
 
-#: .\web\templates\web\layout\basic.html:158
-#: .\web\templates\web\layout\docLayout.html:207
+#: .\web\templates\web\layout\basic.html:162
+#: .\web\templates\web\layout\docLayout.html:225
 msgid "Copy"
 msgstr "复制"
 
-#: .\web\templates\web\layout\basic.html:185
-#: .\web\templates\web\layout\docLayout.html:234
+#: .\web\templates\web\layout\basic.html:189
+#: .\web\templates\web\layout\docLayout.html:243
 msgid "Bilibili Profile"
 msgstr "Bilibili个人空间"
 
-#: .\web\templates\web\layout\basic.html:208
-#: .\web\templates\web\layout\docLayout.html:257
+#: .\web\templates\web\layout\basic.html:212
+#: .\web\templates\web\layout\docLayout.html:164
 msgid "Copy Status"
 msgstr "复制状态"
 
-#: .\web\templates\web\layout\basic.html:209
-#: .\web\templates\web\layout\docLayout.html:258
+#: .\web\templates\web\layout\basic.html:213
+#: .\web\templates\web\layout\docLayout.html:165
 msgid "just now"
 msgstr "刚刚"
 
-#: .\web\templates\web\layout\basic.html:218
-#: .\web\templates\web\layout\docLayout.html:267
+#: .\web\templates\web\layout\basic.html:222
+#: .\web\templates\web\layout\docLayout.html:169
 msgid "You've copied my email address, go ahead and email me"
 msgstr "您已经复制了我的邮箱地址，可以发邮件给我了"
 
-#: .\web\templates\web\layout\basic.html:266
-#: .\web\templates\web\layout\docLayout.html:315
+#: .\web\templates\web\layout\basic.html:270
+#: .\web\templates\web\layout\docLayout.html:292
 msgid "Bilibili Video Resouce"
 msgstr "Bilibili视频资源"
 
-#: .\web\templates\web\layout\basic.html:274
+#: .\web\templates\web\layout\basic.html:278
 msgid "Bilibili Video Docs"
 msgstr "Bilibili视频文档"
 
-#: .\web\templates\web\layout\basic.html:376
-#: .\web\templates\web\layout\basic.html:381
-#: .\web\templates\web\layout\basic.html:384
-#: .\web\templates\web\layout\basic.html:402
-#: .\web\templates\web\layout\basic.html:407
-#: .\web\templates\web\layout\basic.html:410
-#: .\web\templates\web\layout\docLayout.html:499
-#: .\web\templates\web\layout\docLayout.html:504
-#: .\web\templates\web\layout\docLayout.html:507
-#: .\web\templates\web\layout\docLayout.html:525
-#: .\web\templates\web\layout\docLayout.html:530
-#: .\web\templates\web\layout\docLayout.html:533
+#: .\web\templates\web\layout\basic.html:380
+#: .\web\templates\web\layout\basic.html:385
+#: .\web\templates\web\layout\basic.html:388
+#: .\web\templates\web\layout\basic.html:406
+#: .\web\templates\web\layout\basic.html:411
+#: .\web\templates\web\layout\basic.html:414
 msgid "Error:"
 msgstr "错误信息："
 
-#: .\web\templates\web\layout\docLayout.html:399
+#: .\web\templates\web\layout\docLayout.html:340
 msgid "Docs"
 msgstr "文档"
 
-#: .\web\templates\web\layout\docLayout.html:413
+#: .\web\templates\web\layout\docLayout.html:348
 msgid "Bilibili Video Docs Navbar"
 msgstr "Bilibili视频文档导航"
 
-#: .\web\templates\web\layout\docLayout.html:461
+#: .\web\templates\web\layout\docLayout.html:380
 #, fuzzy
 #| msgid "Bilibili Video Resouce"
 msgid "Bilibili Video Resource"
 msgstr "Bilibili视频资源"
 
+#: .\web\templates\web\layout\docLayout.html:401
+msgid "Table of Contents"
+msgstr "内容导航"
+
+#: .\web\templates\web\layout\docLayout.html:469
+#: .\web\templates\web\layout\docLayout.html:474
+#: .\web\templates\web\layout\docLayout.html:477
+#: .\web\templates\web\layout\docLayout.html:495
+#: .\web\templates\web\layout\docLayout.html:500
+#: .\web\templates\web\layout\docLayout.html:503
+#, fuzzy
+#| msgid "Error:"
+msgid "Error: "
+msgstr "错误信息："
+
 #: .\web\templates\web\templateTagsHtml\notification.html:9
 msgid "Notification"
 msgstr "通知"
 
-#: .\web\views\landingpage.py:20
+#: .\web\views\landingpage.py:40
 msgid ""
 "Sorry, it seems like you did not pass the correct language code to server."
 msgstr "抱歉，错误出现的原因似乎是由于您向服务器传递了错误的语言代码"
 
-#: .\web\views\landingpage.py:43
+#: .\web\views\landingpage.py:63
 msgid ""
 "Sorry, the server may glitched. This is the error messeage from server: "
 msgstr "抱歉，由于服务器的原因出错了。这是来自服务器的错误信息："
+
+#~ msgid "Pure Beginner Guide"
+#~ msgstr "入门小白了解"
+
+#~ msgid "Model"
+#~ msgstr "模型"
