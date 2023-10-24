@@ -6,22 +6,6 @@
 {% endblock %}
 {% block css %}
     <style>
-        :root{
-            --bd-purple: #4c0bce;
-            --bd-violet: #712cf9;
-            --bd-accent: #ffe484;
-            --bd-violet-rgb: 112.520718,44.062154,249.437846;
-            --bd-accent-rgb: 255,228,132;
-            --bd-pink-rgb: 214,51,132;
-            --bd-teal-rgb: 32,201,151;
-            --bd-violet-bg: var(--bd-violet);
-            --bd-toc-color: var(--bd-violet);
-            --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), .1);
-            --bd-callout-link: 10,88,202;
-            --bd-callout-code-color: #ab296a;
-            --bd-pre-bg: var(--bs-tertiary-bg);
-        }
-        body,
         #carouselContainer .carousel-item .card .card-body{
             background-repeat: no-repeat;
             background-image: linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%),radial-gradient(ellipse at top left, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),radial-gradient(ellipse at top right, rgba(var(--bd-accent-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center right, rgba(var(--bd-violet-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center left, rgba(var(--bd-pink-rgb), 0.5), transparent 50%);
@@ -29,7 +13,7 @@
         #carouselContainer .carousel-item .card img{
             display: block;
             width: 100%;
-            max-height: 30vh;
+            height: 40vh;
             object-fit: cover;
             object-position: center 0;
         }

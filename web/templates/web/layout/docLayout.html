@@ -116,8 +116,28 @@
       padding:.125rem;
       background:transparent var(--bs-btn-close-bg) center/3em auto no-repeat;
       border-radius: 1.5rem;
-      
     }
+    :root{
+            --bd-purple: #4c0bce;
+            --bd-violet: #712cf9;
+            --bd-accent: #ffe484;
+            --bd-violet-rgb: 112.520718,44.062154,249.437846;
+            --bd-accent-rgb: 255,228,132;
+            --bd-pink-rgb: 214,51,132;
+            --bd-teal-rgb: 32,201,151;
+            --bd-violet-bg: var(--bd-violet);
+            --bd-toc-color: var(--bd-violet);
+            --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), .1);
+            --bd-callout-link: 10,88,202;
+            --bd-callout-code-color: #ab296a;
+            --bd-pre-bg: var(--bs-tertiary-bg);
+        }
+        #navBarHeader,
+        #navBarHeader .offcanvas{
+            opacity: 0.95;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%),radial-gradient(ellipse at top left, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),radial-gradient(ellipse at top right, rgba(var(--bd-accent-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center right, rgba(var(--bd-violet-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center left, rgba(var(--bd-pink-rgb), 0.5), transparent 50%);
+        }
   </style>
 
   {% block title %}{% endblock title %} {% block css %} {% endblock css %}
@@ -257,7 +277,7 @@
       </div>
     </div>
   </div>
-  <header class="sticky-top bg-body-tertiary">
+  <header class="sticky-top bg-body-tertiary" id="navBarHeader">
     <nav class="navbar navbar-expand-md ">
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'web:landingpage' %}">
@@ -338,8 +358,7 @@
         </svg>
       </button>
       <span class="fs-3" href="{% url 'web:bilibiliVideoDocs' %}">{% trans 'Docs' %}</span>
-      <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="docNavbar"
-        style="background-color: #e8f3ee">
+      <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="docNavbar">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title">
             <a class="text-decoration-none link-body-emphasis" href="{% url 'web:bilibiliVideoDocs' %}">
@@ -395,7 +414,7 @@
       </button>
       <div id="contentOffCanvasContainer">
         <div class="offcanvas offcanvas-start bg-teal opacity-75" data-bs-scroll="true" tabindex="-1"
-          id="tableOfContentsOffCanvas" >
+          id="tableOfContentsOffCanvas">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title text-success">
               {% trans 'Table of Contents' %}
