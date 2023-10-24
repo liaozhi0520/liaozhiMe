@@ -134,6 +134,28 @@ if checkInput=="y":
                 cTag['src']=cTag['src'].replace(quote(assetsDirName),'{% static imgUrlPrefix %}')
     print("==============Replaced successfully===============")
 
+    ## if the suffix of src value is common video format, then I should change figure containing this src to a video tag
+    print("=========Process to find if has any video source====")
+    commonVidFmt = ["mp4", "avi", "mkv", "wmv", "mov", "flv", "webm", "3gp", "3g2", "ogv", "mpeg", "mpg", "divx", "xvid", "h264", "avc", "h265", "hevc"]
+    def filterOutVideoSrc(tag):
+        if tag.has_attr("href") and tag["href"].split(".")[-1] in commonVidFmt:
+            print(f"Found one video source: {tag['href']}")
+            return True
+        else:
+            return False
+    videoSrcTags=soup.find_all(filterOutVideoSrc)
+    for videoTag in videoSrcTags:
+        hrefValue=videoTag["href"]
+        hrefFmt=hrefValue.split(".")[-1]
+        figureTag=videoTag.find_parent("figure")
+        newVidTag=soup.new_tag("video",controls=True,style="display: block; width: 100%; height: 40vh; object-fit: contain;")
+        newSrcTag=soup.new_tag("source",src=hrefValue,type=f"video/{hrefFmt}")
+        newVidTag.append(newSrcTag)
+        newVidTag.append("Your browser does not support the video tag. Please update to a newer browser.")
+        figureTag.clear()
+        figureTag.append(newVidTag)
+    print("========video tag processing done=========")
+
     ## wrap the header image in a anchor
     print("=====wrap the header image in a anchor and replace anchor href with default no bilibili video img=======")
     print(".\n.\n.\n")

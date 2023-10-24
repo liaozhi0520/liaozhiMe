@@ -330,11 +330,10 @@
    我们知道动画是由一张张的图片（帧(frame)）组成的，那我让stable diffusion来帮我们生成帧，然后再把帧组件二起来不就成为一张动画了吗？
   </p>
   <figure id="96df8d97-2624-4a23-9673-c67798cb9988">
-   <div class="source">
-    <a href="{% static imgUrlPrefix %}/YT2mp3.info_-_Trip_Generator___Stable_Diffusion___Deforum___AI.mp4" target="_blank">
-     https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7231cf2f-d81c-47f4-abd0-db0ec45b5669/YT2mp3.info_-_Trip_Generator___Stable_Diffusion___Deforum___AI.mp4
-    </a>
-   </div>
+   <video controls="True" style="display: block; width: 100%; height: 40vh; object-fit: contain;">
+    <source src="{% static imgUrlPrefix %}/YT2mp3.info_-_Trip_Generator___Stable_Diffusion___Deforum___AI.mp4" type="video/mp4"/>
+    Your browser does not support the video tag. Please update to a newer browser.
+   </video>
   </figure>
   <blockquote class="" id="3e739b69-45bf-42da-95d2-b2b688169532">
    目前来说，使用stale diffusion来生成动画的技术仍然不够成熟，因为使用目前的技术，就算你加再多的限制条件，你都无法保证stable diffusion生成一样的背景或者五官。所以生成的动画还是不尽如人意。
