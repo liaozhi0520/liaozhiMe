@@ -14,6 +14,10 @@
                 width: 100%
             }
         }
+        #resourceDownloadAccordion .accordion-button:not(.collapsed){
+            background-repeat: no-repeat;
+            background-image: linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%);
+        }
     </style>
 {% endblock %}
 {% block content %}
@@ -49,14 +53,26 @@
                                               </span>
                                         </div>
                                     </a>
+                                    {% empty %}
+                                    <h3 class="text-center text-danger">{% trans 'No Resource to Download Yet' %}</h3>
                                 {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
+                {% empty %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse">
+                        {% trans 'No Video in this Series Yet' %}
+                      </button>
+                    </h2>
+                    
+                </div>
             {% endfor %}
         </div>
-    	
+    	{% empty %}
+        <h3 class="text-center text-danger">{% trans 'No Video Series Set Yet' %}</h3>
     {% endfor %}
     </div>
     

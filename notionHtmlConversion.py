@@ -205,7 +205,7 @@ if checkInput=="y":
         a["target"]="_blank"
     print("==========Adding Process Finished=============")
     
-    ## add the table and table-responsive class to div.collection-content
+    ## add the table and table-responsive class to div.collection-content and delete the anchor target of .cell-title tag
     print("======add the table and table-responsive class to div.collection-content=========")
     print(".\n.\n.\n")
     collectionContentTags=soup.find_all("div",class_="collection-content")
@@ -215,6 +215,9 @@ if checkInput=="y":
         tableResp=soup.new_tag("div",attrs={
             "class":"table-responsive"
         })
+        cellTitleTags=tableTag.find_all("td",class_="cell-title")
+        for cellTitleTag in cellTitleTags:
+            del cellTitleTag.find("a")["href"]
         tag.wrap(tableResp)
     print("======Adding process complete==========")
 
