@@ -1,0 +1,101 @@
+{% extends 'web/layout/basic.html' %}
+{% load i18n %}
+
+{% block css %}
+  <style>
+    #indexContainer{
+      font-size: large;
+      min-height: 100vh;
+      margin: 20px auto;
+    }
+    .btn-toggle {
+      padding: 0.25rem 0.5rem;
+      font-weight: 600;
+      color: var(--bs-emphasis-color);
+      background-color: transparent;
+    }
+
+    .btn-toggle:hover,
+    .btn-toggle:focus {
+      color: rgba(var(--bs-emphasis-color-rgb), 0.85);
+      background-color: var(--bs-tertiary-bg);
+    }
+
+    .btn-toggle::before {
+      width: 1.25em;
+      line-height: 0;
+      content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 512 512'%3e %3cstyle%3e svg%7Bfill:%23fdd46d%7D%3c/style%3e %3cpath d='M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z'/%3e %3c/svg%3e");
+      transition: transform 0.35s ease;
+      transform-origin: 0.5em 50%;
+    }
+
+    [data-bs-theme="dark"] .btn-toggle::before {
+      content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 512 512'%3e %3cstyle%3e svg%7Bfill:%23fdd46d%7D%3c/style%3e %3cpath d='M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z'/%3e %3c/svg%3e");
+    }
+
+    .btn-toggle[aria-expanded="true"] {
+      color: rgba(var(--bs-emphasis-color-rgb), 0.85);
+    }
+
+    .btn-toggle[aria-expanded="true"]::before {
+      transform: rotate(90deg);
+    }
+
+    .btn-toggle-nav a {
+      padding: 0.1875rem 0.5rem;
+      margin-top: 0.125rem;
+      margin-left: 1.25rem;
+    }
+    .btn-toggle-nav a:hover,
+    .btn-toggle-nav a:focus {
+      background-color: var(--bs-tertiary-bg);
+    }
+  </style>
+{% endblock  %}
+  
+{% block content %}
+<div class="border-bottom "></div>
+<div id="indexContainer" class="text-center p-3 w-100">
+  <ul class="list-unstyled ps-0 w-50 mx-auto">
+      {% for series in dataRetrieved %}
+      <li class="mb-1 border-bottom  py-3">
+        <button
+          class="btn btn-toggle d-inline-flex align-items-center rounded border-0 "
+          data-bs-toggle="collapse"
+          data-bs-target="#seriesId_{{series.id}}"
+          aria-expanded="false"
+        >
+          {{series.name}}
+        </button>
+        <div
+          class="collapse show"
+          id="seriesId_{{series.id}}"
+        >
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            {% for article in series.articlesFromThisSeries %}
+            <li>
+              <a
+                href="{% url 'web:docs' %}?docTemplateUrl={{series.enName}}/{{article.enName}}"
+                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                >{{article.name}}</a
+              >
+            </li>
+            {% empty %}
+            <h6 class="text-danger">{% trans 'There is no articles in this series yet' %}</h6>
+            {% endfor %}
+          </ul>
+        </div>
+      </li>
+      
+      {% empty %}
+        <h5 class="text-danger fs-bold border-bottom ">{% trans 'There is no series existing now' %}</h5>
+      {% endfor %}
+      
+
+    </ul>
+
+
+</div>
+{% endblock  %}
+  
+    

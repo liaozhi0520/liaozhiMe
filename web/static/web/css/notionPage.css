@@ -93,7 +93,8 @@
   padding-left: 1.5em;
 }
 
-#notionPageContainer hr {
+/* use bootstrap hr css */
+/* #notionPageContainer hr {
   background: transparent;
   display: block;
   width: 100%;
@@ -101,7 +102,7 @@
   visibility: visible;
   border: none;
   border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
+} */
 
 #notionPageContainer img {
   max-width: 100%;
@@ -399,7 +400,8 @@ ul {
   text-align: center;
 }
 
-#notionPageContainer .code,
+/* use the open source lib prism to render the code */
+/* #notionPageContainer .code,
 #notionPageContainer code {
   background: rgba(135, 131, 120, 0.15);
   border-radius: 3px;
@@ -427,7 +429,7 @@ ul {
   padding: 0;
   font-size: 100%;
   color: inherit;
-}
+} */
 
 #notionPageContainer blockquote {
   margin: 1em 0;
@@ -449,7 +451,6 @@ ul {
   overflow: hidden;
   text-overflow: ellipsis;
   height: 1.75em;
-  white-space: nowrap;
 }
 
 #notionPageContainer .bookmark-text {

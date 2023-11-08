@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import quote,unquote
 import uuid
 import copy
-from web.models import Video
+from web.models import Series,Article
 from django.shortcuts import resolve_url
 import json
 
@@ -56,33 +56,114 @@ def validateImgWithAnchor(tag):
     else:
         return False
 
+def createNewSeries():
+    enName=input("input the english name of series: ").strip()
+    name=input("input the Chinese name of series: ").strip()
+    try:
+        series=Series.objects.create(enName=enName,name=name)
+        creatingRes=(True,series)
+    except Exception as e:
+        creatingRes=(False,str(e))
+    return creatingRes
+
+def createNewArticle(seriesId):
+    enName=input("input the enName of new article: ")
+    name=input("input the name of article: ")
+    try:
+        article=Article.objects.create(enName=enName,name=name,fromSeries_id=seriesId,carouselInfo="None")
+        creatingRes=(True,article)
+    except Exception as e:
+        creatingRes=(False,str(e))
+    return creatingRes
 
 parser=argparse.ArgumentParser(description="This is a python script for converting the exported notion html to my own blog html")
 parser.add_argument("-p","--propDir", type=str, required=True, help="Input path of the dir including the exported notion html.")
 parser.add_argument("-b","--bilibiliVidHref",required=False, default="#",type=str,help="If you got a bilibili video for this tutorial, then you can input one, otherwise it is set to #")
-parser.add_argument("-n","--tutorialNo",required=True,type=str,help="this is should be a format like videoSeriesId/videoId")
 args=parser.parse_args()
-checkInput=input(f"This is the arguments you input, please check it again:\n--propDir:{args.propDir}\n--bilibiliVidHref:{args.bilibiliVidHref}\n--tutorialNo:{args.tutorialNo}\n[y|n]").strip().lower()
+checkInput=input(f"This is the arguments you input, please check it again:\n--propDir:{args.propDir}\n--bilibiliVidHref:{args.bilibiliVidHref}\ntpye [y|n] to proceed:\n").strip().lower()
 while True:
     if not re.match(r"y|n",checkInput):
         checkInput=input(f"Please input y or n").strip().lower()
     else:
         break
 if checkInput=="y":
-    tuturialNo=args.tutorialNo.split(r"/")
-    templatePath=os.path.join(baseDir,"web","templates","web","bilibiliVideoDocTemplates",tuturialNo[0],tuturialNo[1],"doc.html")
-    imgDirPath=os.path.join(baseDir,"web","static","web","img","bilibiliVideoDocTemplates",tuturialNo[0],tuturialNo[1])
-    if not os.path.exists(os.path.join(baseDir,"web","templates","web","bilibiliVideoDocTemplates",tuturialNo[0])):
-        os.mkdir(os.path.join(baseDir,"web","templates","web","bilibiliVideoDocTemplates",tuturialNo[0]))
-    if not os.path.exists(os.path.join(baseDir,"web","templates","web","bilibiliVideoDocTemplates",tuturialNo[0],tuturialNo[1])):
-        os.mkdir(os.path.join(baseDir,"web","templates","web","bilibiliVideoDocTemplates",tuturialNo[0],tuturialNo[1]))
-    if not os.path.exists(os.path.join(baseDir,"web","static","web","img","bilibiliVideoDocTemplates",tuturialNo[0])):
-        os.mkdir(os.path.join(baseDir,"web","static","web","img","bilibiliVideoDocTemplates",tuturialNo[0]))
-    if not os.path.exists(os.path.join(baseDir,"web","static","web","img","bilibiliVideoDocTemplates",tuturialNo[0],tuturialNo[1])):
-        os.mkdir(os.path.join(baseDir,"web","static","web","img","bilibiliVideoDocTemplates",tuturialNo[0],tuturialNo[1]))
+    # retrieve the series data and prompt user to input the series id where this article being placed
+    allSeries=Series.objects.all()
+    seriesToLandArticle=None
+    promptStr=""
+    if not allSeries:
+        promptStr="There is no series now.Please create a new one."
+        creatingFlag,seriesToLandArticle=createNewSeries()
+        if not creatingFlag:
+            print(seriesToLandArticle)
+            sys.exit(0)
+    else:
+        indexes=[]
+        for index,series in enumerate(allSeries):
+            indexes.append(str(index))
+            promptStr=promptStr+f"series-index-[{index}]:{series.name}\n"
+        promptStr=promptStr+f"type the series index where your article being placed Or type [new] to create a new series:\n"
+        userAction=input(promptStr).strip().lower()
+        while True:
+            if userAction in indexes or userAction=="new":
+                break
+            else:
+                userAction=input(f"You need to type the series [index] or [new]").strip().lower()
+        if userAction=="new":
+            creatingFlag,seriesToLandArticle=createNewSeries()
+            if not creatingFlag:
+                print(seriesToLandArticle)
+                sys.exit(0)
+        else:
+            seriesToLandArticle=allSeries[int(userAction)]
+
+    print(f"You are gonna put your article in series named {seriesToLandArticle.name}")
+    
+    articles=Article.objects.filter(fromSeries_id=seriesToLandArticle.id).all()
+    article=None
+    promptStr=""
+    if not articles:
+        promptStr="There is no articles in this series now.Please create a new one."
+        creatingFlag,article=createNewArticle(seriesToLandArticle.id)
+        if not creatingFlag:
+            print(article)
+            sys.exit(0)
+    else:
+        indexes=[]
+        for index,article in enumerate(articles):
+            indexes.append(str(index))
+            promptStr=promptStr+f"article-index-[{index}]:{article.name}\n"
+        promptStr=promptStr+f"type the index of article Or type [new] to create a new article:\n"
+        userAction=input(promptStr).strip().lower()
+        while True:
+            if userAction in indexes or userAction=="new":
+                break
+            else:
+                userAction=input(f"You need to type the article [index] or [new]").strip().lower()
+        if userAction=="new":
+            creatingFlag,article=createNewArticle(seriesToLandArticle.id)
+            if not creatingFlag:
+                print(article)
+                sys.exit(0)
+        else:
+            article=articles[int(userAction)]
+    print(f"You are gonna name your article with {article.name} and {article.enName}")
+
+    if not os.path.exists(os.path.join(baseDir,"web","templates","web","docTemplates",f"{seriesToLandArticle.enName}")):
+        os.mkdir(os.path.join(baseDir,"web","templates","web","docTemplates",f"{seriesToLandArticle.enName}"))
+    if not os.path.exists(os.path.join(baseDir,"web","templates","web","docTemplates",f"{seriesToLandArticle.enName}",f"{article.enName}")):
+        os.mkdir(os.path.join(baseDir,"web","templates","web","docTemplates",f"{seriesToLandArticle.enName}",f"{article.enName}"))
+    if not os.path.exists(os.path.join(baseDir,"web","static","web","img","docs",f"{seriesToLandArticle.enName}")):
+        os.mkdir(os.path.join(baseDir,"web","static","web","img","docs",f"{seriesToLandArticle.enName}"))
+    if not os.path.exists(os.path.join(baseDir,"web","static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}")):
+        os.mkdir(os.path.join(baseDir,"web","static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}"))
+    
+    docTemplatePath=os.path.join(baseDir,"web","templates","web","docTemplates",f"{seriesToLandArticle.enName}",f"{article.enName}","doc.html")
+    imgDirPath=os.path.join(baseDir,"web","static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}")
+
     shutil.rmtree(imgDirPath)
     os.mkdir(imgDirPath)
-    print(f"----create a new template file:{templatePath}-------")
+    print(f"----create a new template file:{docTemplatePath}-------")
     propDir=args.propDir
     if not os.path.exists(propDir):
         print(f"No propDir {propDir} exists. Existing----")
@@ -118,20 +199,20 @@ if checkInput=="y":
     print("============Coverting successfully===========")
 
     ## replace new img src prefix
-    print("===Replace prefixes of all img src and according anchor href with {% static imgUrlPrefix %}===")
+    print("===Replace prefixes of all img src and according anchor href with  imgDirPath===")
     print(".\n.\n.\n")
     withSrcAttrTags=soup.find_all(findSpecifiedScrAttr)
     for tag in withSrcAttrTags:
         if tag.has_attr("href"):
-            tag['href']=tag['href'].replace(quote(assetsDirName),'{% static imgUrlPrefix %}')
+            tag['href']=tag['href'].replace(quote(assetsDirName), "/".join(["/static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}"]))
         if tag.has_attr("src"):
-            tag['src']=tag['src'].replace(quote(assetsDirName),'{% static imgUrlPrefix %}')
+            tag['src']=tag['src'].replace(quote(assetsDirName),"/".join(["/static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}"]))
         childrenTags=tag.find_all(findSpecifiedScrAttr)
         for cTag in childrenTags:
             if cTag.has_attr("href"):
-                cTag['href']=cTag['href'].replace(quote(assetsDirName),'{% static imgUrlPrefix %}')
+                cTag['href']=cTag['href'].replace(quote(assetsDirName),"/".join(["/static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}"]))
             if cTag.has_attr("src"):
-                cTag['src']=cTag['src'].replace(quote(assetsDirName),'{% static imgUrlPrefix %}')
+                cTag['src']=cTag['src'].replace(quote(assetsDirName),"/".join(["/static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}"]))
     print("==============Replaced successfully===============")
 
     ## if the suffix of src value is common video format, then I should change figure containing this src to a video tag
@@ -157,40 +238,35 @@ if checkInput=="y":
     print("========video tag processing done=========")
 
     ## wrap the header image in a anchor
-    print("=====wrap the header image in a anchor and replace anchor href with default no bilibili video img=======")
+    print("=====wrap the page cover image in a anchor and replace anchor href with default no bilibili video img=======")
     print(".\n.\n.\n")
     coverImg=soup.find("img",class_="page-cover-image")
     bilibiliLinkTag=soup.new_tag("a",attrs={
             "target":"_blank"
         })
     if args.bilibiliVidHref=="#":
-        coverImg["src"]="{% static 'web/img/nobilibiliVidImg.png' %}"
+        coverImg["src"]="/".join(["/static","web","img","nobilibiliVidImg.png"])
         coverImg["style"]="object-position:center 0"
     else:
         bilibiliLinkTag["href"]=args.bilibiliVidHref
     coverImg.wrap(bilibiliLinkTag)
     print(f"=====wrap and replacement with {coverImg['src']} successfully")
 
-    ## detect the filename of page cover image and add it to video object in database
-    print("===========Save the carousel info============")
+    ## detect the filename of page cover image and add it to article object in database
     coverImgSrc=coverImg["src"]
-    if coverImgSrc=="{% static 'web/img/nobilibiliVidImg.png' %}":
-        coverImgSrc='/'.join(["/static"]+re.findall(r"{% static '(.*)' %}",coverImgSrc,re.DOTALL))
-    else:
-        coverImgSrc="/".join(["/static","web/img/bilibiliVideoDocTemplates"]+tuturialNo+[coverImgSrc.split("/",1)[1]]) 
-    docHref=resolve_url("web:bilibiliVideoDocs")+"?docTemplateUrl="+"web/bilibiliVideoDocTemplates/"+tuturialNo[0]+"/"+tuturialNo[1]
-    vidObj=Video.objects.get(id=tuturialNo[1])
-    coverCaptionSeriesName=vidObj.fromSeires.seriesName
-    coverCaptionVideoName=vidObj.videoName
+    print("===========Save the carousel info============")
+    docHref=resolve_url("web:docs")+"?docTemplateUrl="+"/".join([seriesToLandArticle.enName,article.enName])
+    coverCaptionSeriesName=seriesToLandArticle.name
+    coverCaptionArticleName=article.name
     carouselInfo={
         "coverImgSrc":coverImgSrc,
         "docHref":docHref,
         "coverCaptionSeriesName":coverCaptionSeriesName,
-        "coverCaptionVideoName":coverCaptionVideoName
+        "coverCaptionArticleName":coverCaptionArticleName
     }
     carouselInfoJson=json.dumps(carouselInfo)
-    vidObj.carouselInfo=carouselInfoJson
-    vidObj.save()
+    article.carouselInfo=carouselInfoJson
+    article.save()
     print("Carousel info:")
     for k,v in carouselInfo.items():
         print(f"{k}:{v}")
@@ -219,6 +295,13 @@ if checkInput=="y":
         for cellTitleTag in cellTitleTags:
             del cellTitleTag.find("a")["href"]
         tag.wrap(tableResp)
+    simpleTableTags=soup.find_all("table",class_="simple-table")
+    for simpleTable in simpleTableTags:
+        tableResp=soup.new_tag("div",attrs={
+            "class":"table-responsive"
+        })
+        simpleTable["class"]=" ".join(simpleTable["class"]+["table","table-hover"])
+        simpleTable.wrap(tableResp)
     print("======Adding process complete==========")
 
     ## add a larger image modal to an image
@@ -257,28 +340,33 @@ if checkInput=="y":
         modalContentTag.append(imgTag)
         modalDialogTag.append(modalContentTag)
         modalTag.append(modalDialogTag)
-        largerImgModals.append(modalTag.prettify())
+        largerImgModalsStr.append(str(modalTag))
 
-    largerImgModals=[]
+    largerImgModalsStr=[]
+    
     collectionImgTags=[]
-    figureTags=soup.find_all("figure",class_="image")
-    ## I found that the image abemmded in the .collection-content don't have the figure tag to include it. I need to find a way to detect that
     collectionContentTags=soup.find_all("div",class_="collection-content")
     for tag in collectionContentTags:
         anchorTags=tag.find_all(validateImgWithAnchor)
         for anchorTag in anchorTags:
             collectionImgTags.append(anchorTag)
+    figureTags=soup.find_all("figure",class_="image")
+    if collectionImgTags or figureTags:
+        needsToConstructLargerImgModalsBlock=True
+        for tag in figureTags:
+            createLargerImgModal(modalId=tag["id"],tag=tag,type=1)
+        for tag in collectionImgTags:
+            createLargerImgModal(modalId=uuid.uuid4().hex,tag=tag,type=2)
+    else:
+        needsToConstructLargerImgModalsBlock=False
     
-    for tag in figureTags:
-        createLargerImgModal(modalId=tag["id"],tag=tag,type=1)
-    for tag in collectionImgTags:
-        createLargerImgModal(modalId=uuid.uuid4().hex,tag=tag,type=2)
     print("==========Creating completed==========")
 
     ## delete some  styles of figure.callout
     calloutTags=soup.find_all("figure",class_="callout")
     for calloutTag in calloutTags:
-        calloutTag["style"]='display:flex'
+        calloutTag["style"]="vertical-align:-0.25em"
+        calloutTag["class"]=" ".join(calloutTag["class"]+["d-flex","align-items-baseline"])
     
     ## nav tag reconstruct
     print("==========Nav tag reconstruct==========")
@@ -317,25 +405,66 @@ if checkInput=="y":
     articleTag=soup.find("article")
     print("==========Nav tag reconstruct successfully==========")
 
+    # find all the styles with text: @import url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/\w+/katex.min.css") and extract them from trees
+    def findKatexCssTag(tag):
+        if tag.name=="style" and bool(re.search(r"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/[0-9.]+/katex\.min\.css",tag.text)):
+            return True
+        else:
+            return False
+    katexCssTags=soup.find_all(findKatexCssTag)
+    for katexCssTag in katexCssTags:
+        katexCssTag.extract()
+    needsToImportKatexCss=False
+    if katexCssTags:
+        importKatexCssTag=soup.new_tag("link")
+        importKatexCssTag["rel"]="stylesheet"
+        importKatexCssTag["href"]="/static/web/css/notionKatex.css"
+        needsToImportKatexCss=True
+    # find code tag to see if I need to add prism lib to my code
+    needsToImportPrism=False
+    preTags=soup.find_all("pre")
+    if preTags:
+        needsToImportPrism=True
+        importPrismCssTag=soup.new_tag("link")
+        importPrismCssTag["rel"]="stylesheet"
+        importPrismCssTag["href"]="/static/web/css/prism.min.css"
+        importPrismJsTag=soup.new_tag("script")
+        importPrismJsTag["src"]="/static/web/js/prism.min.js"
+        for pre in preTags:
+            pre["class"]="line-numbers"
+            code=pre.find("code")
+            codeString=code.string
+            if codeString.startswith("language-"):
+                language=re.findall(r"^language-(\w+)\n",codeString)[0]
+                print(f"===Detect a code block with language {language}===")
+                code["class"]=f"language-{language}"
+                code.string=re.sub(r"^language-(\w+)\n","",codeString)
+            else:
+                print("===No language detected from this code block===")
+                code["class"]=f"language-none"
+    # construct the contents in css block and js block and largerImgModals block
+    cssBlockTagContents=""
+    jsBlockTagContents=""
+    largerImgModalsContents=""
+
+    if needsToImportKatexCss:
+        cssBlockTagContents+=str(importKatexCssTag)
+    if needsToImportPrism:
+        cssBlockTagContents+=str(importPrismCssTag)
+        jsBlockTagContents+=str(importPrismJsTag)
+    if needsToConstructLargerImgModalsBlock:
+        largerImgModalsContents=largerImgModalsContents.join(largerImgModalsStr)
+
 
     ## write new html file
-    with open(templatePath,"wt",encoding="utf-8") as f:
-        f.write('''
-{% extends 'web/layout/docLayout.html' %}
-{% load static %}
-{% load i18n %}
-''')
-        f.write("{% block title %}\n"+titleTag.prettify()+"{% endblock %}\n")
-        f.write("{% block tableOfContents %}\n"+newNavTag.prettify()+"{% endblock %}\n")
-        f.write("{% block content %}\n"+articleTag.prettify()+"{% endblock %}\n")
-        largerImgModalsStr="{% block largerImgModalContainer %}\n"
-        for modal in largerImgModals:
-            largerImgModalsStr+=modal
-        largerImgModalsStr+="{% endblock %}"
-        f.write(largerImgModalsStr)
-
-
-
+    with open(docTemplatePath,"wt",encoding="utf-8") as f:
+        f.write("{% extends 'web/layout/docLayout.html' %}{% load static %}{% load i18n %}")
+        f.write("{% block title %}\n"+str(titleTag)+"{% endblock %}\n")
+        f.write("{% block css %}\n"+str(cssBlockTagContents)+"{% endblock %}\n")
+        f.write("{% block tableOfContents %}\n"+str(newNavTag)+"{% endblock %}\n")
+        f.write("{% block content %}\n"+str(articleTag)+"{% endblock %}\n")
+        f.write("{% block largerImgModalContainer %}\n"+str(largerImgModalsContents)+"{% endblock %}\n")
+        f.write("{% block js %}\n"+str(jsBlockTagContents)+"{% endblock %}")
 else:
     print("Exit for wrong argument input")
     sys.exit(0)

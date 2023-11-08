@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views import View
 from django.utils import translation
 from django.utils.translation import gettext as _
-from web.models import Video
+from web.models import Article
 import json
 
 class LandingPageView(View):
@@ -14,15 +14,15 @@ class LandingPageView(View):
                 "coverImgSrc":coverImgSrc,
                 "docHref":docHref,
                 "coverCaptionSeriesName":coverCaptionSeriesName,
-                "coverCaptionVideoName":coverCaptionVideoName
+                "coverCaptionArticleName":coverCaptionArticleName
             }
         '''
-        recommendedVideos=Video.objects.filter(showingAtLandingPage=True).all()    
+        recommendedArticles=Article.objects.filter(showingAtLandingPage=True).all()    
         carouselsInfo=[]
-        for vid in recommendedVideos:
-                infoJson=vid.carouselInfo
+        for article in recommendedArticles:
+                infoJson=article.carouselInfo
                 carouselInfo=json.loads(infoJson)
-                if vid.showingFirstly:
+                if article.showingFirstly:
                     carouselsInfo.insert(0,carouselInfo)
                 else:
                     carouselsInfo.append(carouselInfo)

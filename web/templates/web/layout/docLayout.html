@@ -12,10 +12,30 @@
   <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}" />
   <link rel="stylesheet" href="{% static 'web/css/notionPage.css' %}">
   <style>
-    body {
-      background-color: #e7f2ed
+    :root{
+      --linear-bg:linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%),radial-gradient(ellipse at top left, rgba(176,229,208,1), transparent 50%),radial-gradient(ellipse at top right,  rgba(92,202,238,0.41), transparent 50%),radial-gradient(ellipse at center right, rgba(72,154,78,1), transparent 50%),radial-gradient(ellipse at center left,  rgba(24,138,141,1), transparent 50%);
+      --scrollbar-thumb-hover-bgc: rgba(89, 182, 145,0.3);
+      --doc-bgc:#e7f2ed;
     }
-
+    ::-webkit-scrollbar {
+      width: 0.4em;
+      height: 0.4em;
+    }
+    ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
+      border-radius: 0.4em;
+      background-color: var(--doc-bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background-image: var(--linear-bg);
+      border-radius: 0.4em;
+      height: 117px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--scrollbar-thumb-hover-bgc);
+    }
+    body {
+      background-color: var(--doc-bgc);
+    }
     .iconConfig {
       fill: currentColor;
       vertical-align: -0.125em;
@@ -26,12 +46,17 @@
       font-weight: 600;
       color: var(--bs-emphasis-color);
       background-color: transparent;
+      border: none;
     }
-
     .btn-toggle:hover,
-    .btn-toggle:focus {
+    .btn-toggle.active:hover {
       color: rgba(var(--bs-emphasis-color-rgb), 0.85);
       background-color: var(--bs-tertiary-bg);
+      
+    }
+    .btn-toggle.active{
+      border: none;
+      background-color: rgba(var(--bs-success-rgb),0.2);
     }
 
     .btn-toggle::before {
@@ -61,8 +86,11 @@
     }
 
     .btn-toggle-nav a:hover,
-    .btn-toggle-nav a:focus {
+    .btn-toggle-nav a.active:hover{
       background-color: var(--bs-tertiary-bg);
+    }
+    .btn-toggle-nav a.active{
+      background-color: rgba(var(--bs-success-rgb),0.2);
     }
 
     #tableOfContents .nav {
@@ -117,30 +145,23 @@
       background:transparent var(--bs-btn-close-bg) center/3em auto no-repeat;
       border-radius: 1.5rem;
     }
-    :root{
-            --bd-purple: #4c0bce;
-            --bd-violet: #712cf9;
-            --bd-accent: #ffe484;
-            --bd-violet-rgb: 112.520718,44.062154,249.437846;
-            --bd-accent-rgb: 255,228,132;
-            --bd-pink-rgb: 214,51,132;
-            --bd-teal-rgb: 32,201,151;
-            --bd-violet-bg: var(--bd-violet);
-            --bd-toc-color: var(--bd-violet);
-            --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), .1);
-            --bd-callout-link: 10,88,202;
-            --bd-callout-code-color: #ab296a;
-            --bd-pre-bg: var(--bs-tertiary-bg);
-        }
-        #navBarHeader,
-        #navBarHeader .offcanvas.show {
+        #navBarHeader{
             opacity: 0.95;
             background-repeat: no-repeat;
-            background-image: linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%),radial-gradient(ellipse at top left, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),radial-gradient(ellipse at top right, rgba(var(--bd-accent-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center right, rgba(var(--bd-violet-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center left, rgba(var(--bd-pink-rgb), 0.5), transparent 50%);
+            background-image: var(--linear-bg)
+          }
+        @media(max-width:768px){
+          #navBarHeader .offcanvas {
+            background-image: var(--linear-bg);
+          }
+        }
+        #secondNavBar .offcanvas{
+          background-image: var(--linear-bg);
         }
         .offcanvas{
           --bs-offcanvas-width:350px;
         }
+
   </style>
 
   {% block title %}{% endblock title %} {% block css %} {% endblock css %}
@@ -308,7 +329,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'web:bilibiliResourceDownload' %}">
+                <a class="nav-link" href="{% url 'web:resourcesDownload' %}">
                   <svg class="iconConfig" width="25px" height="25px">
                     <use xlink:href="#archieve"></use>
                   </svg>
@@ -360,11 +381,11 @@
           <use xlink:href="#book"></use>
         </svg>
       </button>
-      <span class="fs-3" href="{% url 'web:bilibiliVideoDocs' %}">{% trans 'Docs' %}</span>
+      <span class="fs-3" href="{% url 'web:docs' %}">{% trans 'Docs' %}</span>
       <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="docNavbar">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title">
-            <a class="text-decoration-none link-body-emphasis" href="{% url 'web:bilibiliVideoDocs' %}">
+            <a class="text-decoration-none link-body-emphasis" href="{% url 'web:docs' %}">
               <svg class="iconConfig" height="30px" width="30px">
                 <use xlink:href="#book"></use>
               </svg>{% trans 'Bilibili Video Docs Navbar' %}
@@ -374,28 +395,32 @@
         </div>
         <div class="offcanvas-body">
           <ul class="list-unstyled ps-0">
-            {% for videoSeries in dataRetrieved %}
+            {% for series in dataRetrieved %}
             <li class="mb-1">
-              <button class="btn btn-toggle d-inline-flex align-items-center rounded   collapsed"
-                data-bs-toggle="collapse" data-bs-target="#videoSeriesId_{{videoSeries.videoSeriesId}}"
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded collapsed {% if series.requested %} active {%endif%}"
+                data-bs-toggle="collapse" data-bs-target="#seriesId_{{series.id}}"
                 aria-expanded="false">
-                {{videoSeries.videoSeriesName}}
+                {{series.name}}
               </button>
-              <div class="collapse show" id="videoSeriesId_{{videoSeries.videoSeriesId}}">
+              <div class="collapse show" id="seriesId_{{series.id}}">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  {% for video in videoSeries.videosFromVideoSeries %}
+                  {% for article in series.articlesFromThisSeries %}
                   <li>
-                    <a href="{% url 'web:bilibiliVideoDocs' %}?docTemplateUrl=web/bilibiliVideoDocTemplates/{{videoSeries.videoSeriesId}}/{{video.videoId}}"
-                      class="link-body-emphasis d-inline-flex text-decoration-none rounded">{{video.videoName}}</a>
+                    <a href="{% url 'web:docs' %}?docTemplateUrl={{series.enName}}/{{article.enName}}"
+                      class="link-body-emphasis d-inline-flex text-decoration-none rounded {% if article.requested %} active{%endif%}">{{article.name}}</a>
                   </li>
+                  {% empty %}
+                  <li><a class="text-danger text-decoration-none rounded" disabled>{% trans 'There is no articles in this series yet' %}</a></li>
                   {% endfor %}
                 </ul>
               </div>
             </li>
+            {% empty %}
+            <h5 class="text-danger">{% trans 'There is no series yet' %}</h5>
             {% endfor %}
 
             <li class="border-top my-3"></li>
-            <a href="{% url 'web:bilibiliResourceDownload' %}" class="link-body-emphasis text-decoration-none rounded">
+            <a href="{% url 'web:resourcesDownload' %}" class="link-body-emphasis text-decoration-none rounded">
               <svg class="iconConfig" height="30px" width="30px">
                 <use xlink:href="#archieve"></use>
               </svg>
@@ -406,43 +431,45 @@
     </div>
   </header>
 
-  <div class="row g-3">
+  <div class="container-fluid">
+    <div class="row g-3">
 
-    <div class="col-xxl-3 col-1">
-      <button class="btn btn-outline-success rounded-circle p-1 ms-3" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#tableOfContentsOffCanvas">
-        <svg style="fill: currentColor" height="30px" width="30px">
-          <use xlink:href="#tableList"></use>
-        </svg>
-      </button>
-      <div id="contentOffCanvasContainer">
-        <div class="offcanvas offcanvas-start bg-teal opacity-75" data-bs-scroll="true" tabindex="-1"
-          id="tableOfContentsOffCanvas">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title text-success">
-              {% trans 'Table of Contents' %}
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-          </div>
-          <div class="offcanvas-body">
+      <div class="col-xxl-3 col-1">
+        <button class="btn btn-outline-success rounded-circle p-1 ms-3" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#tableOfContentsOffCanvas">
+          <svg style="fill: currentColor" height="30px" width="30px">
+            <use xlink:href="#tableList"></use>
+          </svg>
+        </button>
+        <div id="contentOffCanvasContainer">
+          <div class="offcanvas offcanvas-start bg-teal opacity-75" data-bs-scroll="true" tabindex="-1"
+            id="tableOfContentsOffCanvas">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title text-success">
+                {% trans 'Table of Contents' %}
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+            </div>
           </div>
         </div>
+        <div id="contentNormalContainer">
+  
+        </div>
+        <nav class="ps-3" id="tableOfContents">
+          {% block tableOfContents %}
+  
+          {% endblock %}
+        </nav>
+  
       </div>
-      <div id="contentNormalContainer">
-
-      </div>
-      <nav class="ps-3" id="tableOfContents">
-        {% block tableOfContents %}
-
-        {% endblock %}
-      </nav>
-
-    </div>
-    <div class="col-xxl-9 col-11">
-      <div id="notionPageContainer">
-        {% block content %}
-
-        {% endblock %}
+      <div class="col-xxl-9 col-11">
+        <div id="notionPageContainer">
+          {% block content %}
+  
+          {% endblock %}
+        </div>
       </div>
     </div>
   </div>

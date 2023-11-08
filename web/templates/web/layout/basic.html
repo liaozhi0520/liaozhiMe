@@ -15,30 +15,42 @@
     />
     <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}" />
     <style>
+      :root{
+      --linear-bg:linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%),radial-gradient(ellipse at top left, rgba(176,229,208,1), transparent 50%),radial-gradient(ellipse at top right,  rgba(92,202,238,0.41), transparent 50%),radial-gradient(ellipse at center right, rgba(72,154,78,1), transparent 50%),radial-gradient(ellipse at center left,  rgba(24,138,141,1), transparent 50%);
+      --scrollbar-thumb-hover-bgc: rgba(89, 182, 145,0.3);
+      --doc-bgc:#e7f2ed;
+    }
+    ::-webkit-scrollbar {
+      width: 0.5em;
+      height: 0.5em;
+    }
+    ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
+      border-radius: 0.5em;
+      background-color: var(--doc-bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background-image: var(--linear-bg);
+      border-radius: 0.5em;
+      height: 117px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--scrollbar-thumb-hover-bgc);
+    }
+    body {
+      background-color: var(--doc-bgc);
+    }
       .iconConfig {
         fill: currentColor;
         vertical-align: -0.125em;
       }
-      :root{
-            --bd-purple: #4c0bce;
-            --bd-violet: #712cf9;
-            --bd-accent: #ffe484;
-            --bd-violet-rgb: 112.520718,44.062154,249.437846;
-            --bd-accent-rgb: 255,228,132;
-            --bd-pink-rgb: 214,51,132;
-            --bd-teal-rgb: 32,201,151;
-            --bd-violet-bg: var(--bd-violet);
-            --bd-toc-color: var(--bd-violet);
-            --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), .1);
-            --bd-callout-link: 10,88,202;
-            --bd-callout-code-color: #ab296a;
-            --bd-pre-bg: var(--bs-tertiary-bg);
-        }
-        #navBar,
-        #navBar .offcanvas.show{
+        #navBar{
             opacity: 0.95;
             background-repeat: no-repeat;
-            background-image: linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%),radial-gradient(ellipse at top left, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),radial-gradient(ellipse at top right, rgba(var(--bd-accent-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center right, rgba(var(--bd-violet-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center left, rgba(var(--bd-pink-rgb), 0.5), transparent 50%);
+            background-image: var(--linear-bg)}
+        @media(max-width:768px){
+            #navBar .offcanvas {
+            background-image: var(--linear-bg);
+          }
         }
         .offcanvas{
           --bs-offcanvas-width:350px;
@@ -286,7 +298,7 @@
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  href="{% url 'web:bilibiliResourceDownload' %}"
+                  href="{% url 'web:resourcesDownload' %}"
                 >
                   <svg class="iconConfig" width="25px" height="25px">
                     <use xlink:href="#archieve"></use>
@@ -295,7 +307,7 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'web:bilibiliVideoDocs' %}">
+                <a class="nav-link" href="{% url 'web:docs' %}">
                   <svg class="iconConfig" width="25px" height="25px">
                     <use xlink:href="#book"></use>
                   </svg>
