@@ -13,3 +13,5 @@ scripts/
 
 #nginx
 nginx.conf
+
+*/resource/*
