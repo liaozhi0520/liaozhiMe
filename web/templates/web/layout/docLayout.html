@@ -14,24 +14,23 @@
   <style>
     :root{
       --linear-bg:linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%),radial-gradient(ellipse at top left, rgba(176,229,208,1), transparent 50%),radial-gradient(ellipse at top right,  rgba(92,202,238,0.41), transparent 50%),radial-gradient(ellipse at center right, rgba(72,154,78,1), transparent 50%),radial-gradient(ellipse at center left,  rgba(24,138,141,1), transparent 50%);
-      --scrollbar-thumb-hover-bgc: rgba(89, 182, 145,0.3);
       --doc-bgc:#e7f2ed;
     }
     ::-webkit-scrollbar {
-      width: 0.4em;
-      height: 0.4em;
+      width: 0.25em;
+      height: 0.25em;
     }
     ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
       border-radius: 0.4em;
       background-color: var(--doc-bg);
     }
     ::-webkit-scrollbar-thumb {
-      background-image: var(--linear-bg);
-      border-radius: 0.4em;
+      background-color: var(--bs-gray-400);
+      border-radius: 0.25em;
       height: 117px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: var(--scrollbar-thumb-hover-bgc);
+      background-color: var(--bs-gray-600);
     }
     body {
       background-color: var(--doc-bgc);
@@ -145,22 +144,27 @@
       background:transparent var(--bs-btn-close-bg) center/3em auto no-repeat;
       border-radius: 1.5rem;
     }
-        #navBarHeader{
-            opacity: 0.95;
-            background-repeat: no-repeat;
-            background-image: var(--linear-bg)
-          }
-        @media(max-width:768px){
-          #navBarHeader .offcanvas {
-            background-image: var(--linear-bg);
-          }
-        }
-        #secondNavBar .offcanvas{
-          background-image: var(--linear-bg);
-        }
-        .offcanvas{
-          --bs-offcanvas-width:350px;
-        }
+    #navBarHeader{
+        opacity: 0.95;
+        background-repeat: no-repeat;
+        background-image: var(--linear-bg)
+    }
+    @media(max-width:767px){
+      #navBarHeader .offcanvas {
+        background-image: var(--linear-bg);
+      }
+    }
+    #secondNavBar .offcanvas{
+      background-image: var(--linear-bg);
+    }
+    .offcanvas{
+      --bs-offcanvas-width:350px;
+    }
+    @media (max-width:768px) {
+      #contentNormalContainer{
+        height: 0;
+      }
+    }
 
   </style>
 
@@ -329,13 +333,6 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'web:resourcesDownload' %}">
-                  <svg class="iconConfig" width="25px" height="25px">
-                    <use xlink:href="#archieve"></use>
-                  </svg>
-                  {% trans 'Bilibili Video Resouce' %}</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="#" type="button" data-bs-toggle="modal" data-bs-target="#contactMeModal">
                   <svg class="iconConfig" width="25px" height="25px">
                     <use xlink:href="#email"></use>
@@ -418,23 +415,17 @@
             {% empty %}
             <h5 class="text-danger">{% trans 'There is no series yet' %}</h5>
             {% endfor %}
-
-            <li class="border-top my-3"></li>
-            <a href="{% url 'web:resourcesDownload' %}" class="link-body-emphasis text-decoration-none rounded">
-              <svg class="iconConfig" height="30px" width="30px">
-                <use xlink:href="#archieve"></use>
-              </svg>
-              {% trans 'Bilibili Video Resource' %}</a>
           </ul>
         </div>
       </div>
+      {% block 'moreBtnInSecNavBar' %}
+      {% endblock %}
     </div>
   </header>
 
   <div class="container-fluid">
     <div class="row g-3">
-
-      <div class="col-xxl-3 col-1">
+      <div class="col-xxl-3 col-md-1 col-0 position-relative">
         <button class="btn btn-outline-success rounded-circle p-1 ms-3" type="button" data-bs-toggle="offcanvas"
           data-bs-target="#tableOfContentsOffCanvas">
           <svg style="fill: currentColor" height="30px" width="30px">
@@ -464,7 +455,7 @@
         </nav>
   
       </div>
-      <div class="col-xxl-9 col-11">
+      <div class="col-xxl-9 col-md-11 col-12">
         <div id="notionPageContainer">
           {% block content %}
   
@@ -604,10 +595,10 @@
     });
   }
   $(() => {
+    listenWidthChangeForTableOfContents()
     listenEmailCopy()
     listenLanguageChange()
     listenCloseNotification()
-    listenWidthChangeForTableOfContents()
   }
   )
 </script>

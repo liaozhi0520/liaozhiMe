@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from web.models import Series,Article
+from web.models import Series,Article,ArticleViewCount
 import re
 
 class DocsView(View):
@@ -11,6 +11,7 @@ class DocsView(View):
         allSeriesObj=Series.objects.all()
         dataRetrieved=[]
         validDocTemplateUrl=[]
+        requestedArticleViewCount=None
         for series in allSeriesObj:     
             seriesData={
                 'id':series.id,
@@ -24,8 +25,14 @@ class DocsView(View):
                     'id':article.id,
                     "enName":article.enName,
                     'name':article.name,
-                    "requested":True if article.enName==requestingArticleEnName else False   
+                    "requested":True if (article.enName==requestingArticleEnName and series.enName==requestingSeriesEnName) else False   
                 }
+                if (article.enName==requestingArticleEnName and series.enName==requestingSeriesEnName):
+                    requestedArticleViewCountObj=ArticleViewCount.objects.get(article_id=article.id)
+                    requestedArticleViewCountObj.count+=1
+                    requestedArticleViewCountObj.save()
+                    requestedArticleViewCountObj.save()
+                    requestedArticleViewCount=requestedArticleViewCountObj.count.__str__
                 seriesData['articlesFromThisSeries'].append(articleData)
                 validDocTemplateUrl.append("/".join([series.enName,article.enName]))
             dataRetrieved.append(seriesData)
@@ -37,6 +44,7 @@ class DocsView(View):
         if docTemplateUrl in validDocTemplateUrl:
             context={
                 'dataRetrieved':dataRetrieved,
+                "requestedArticleViewCount":requestedArticleViewCount
             }
             return render(request,"/".join(["web","docTemplates",docTemplateUrl,"doc.html"]),context=context)
         else:

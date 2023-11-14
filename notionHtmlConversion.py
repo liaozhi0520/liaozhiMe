@@ -13,9 +13,10 @@ from bs4 import BeautifulSoup
 from urllib.parse import quote,unquote
 import uuid
 import copy
-from web.models import Series,Article
+from web.models import Series,Article,ArticleViewCount
 from django.shortcuts import resolve_url
 import json
+from datetime import datetime
 
 
 def validateTutNo(value):
@@ -147,6 +148,7 @@ if checkInput=="y":
                 sys.exit(0)
         else:
             article=articles[int(userAction)]
+    articleViewCountObj=ArticleViewCount.objects.get_or_create(article_id=article.id)[0]
     print(f"You are gonna name your article with {article.name} and {article.enName}")
 
     if not os.path.exists(os.path.join(baseDir,"web","templates","web","docTemplates",f"{seriesToLandArticle.enName}")):
@@ -157,6 +159,10 @@ if checkInput=="y":
         os.mkdir(os.path.join(baseDir,"web","static","web","img","docs",f"{seriesToLandArticle.enName}"))
     if not os.path.exists(os.path.join(baseDir,"web","static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}")):
         os.mkdir(os.path.join(baseDir,"web","static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}"))
+    if not os.path.exists(os.path.join(baseDir,"web","static","web","resource","docs",f"{seriesToLandArticle.enName}")):
+        os.mkdir(os.path.join(baseDir,"web","static","web","resource","docs",f"{seriesToLandArticle.enName}"))
+    if not os.path.exists(os.path.join(baseDir,"web","static","web","resource","docs",f"{seriesToLandArticle.enName}",f"{article.enName}")):
+        os.mkdir(os.path.join(baseDir,"web","static","web","resource","docs",f"{seriesToLandArticle.enName}",f"{article.enName}"))
     
     docTemplatePath=os.path.join(baseDir,"web","templates","web","docTemplates",f"{seriesToLandArticle.enName}",f"{article.enName}","doc.html")
     imgDirPath=os.path.join(baseDir,"web","static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}")
@@ -206,12 +212,14 @@ if checkInput=="y":
         if tag.has_attr("href"):
             tag['href']=tag['href'].replace(quote(assetsDirName), "/".join(["/static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}"]))
         if tag.has_attr("src"):
+            tag["loading"]="lazy"
             tag['src']=tag['src'].replace(quote(assetsDirName),"/".join(["/static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}"]))
         childrenTags=tag.find_all(findSpecifiedScrAttr)
         for cTag in childrenTags:
             if cTag.has_attr("href"):
                 cTag['href']=cTag['href'].replace(quote(assetsDirName),"/".join(["/static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}"]))
             if cTag.has_attr("src"):
+                cTag["loading"]="lazy"
                 cTag['src']=cTag['src'].replace(quote(assetsDirName),"/".join(["/static","web","img","docs",f"{seriesToLandArticle.enName}",f"{article.enName}"]))
     print("==============Replaced successfully===============")
 
@@ -230,7 +238,7 @@ if checkInput=="y":
         hrefFmt=hrefValue.split(".")[-1]
         figureTag=videoTag.find_parent("figure")
         newVidTag=soup.new_tag("video",controls=True,style="display: block; width: 100%; height: 40vh; object-fit: contain;")
-        newSrcTag=soup.new_tag("source",src=hrefValue,type=f"video/{hrefFmt}")
+        newSrcTag=soup.new_tag("source",src=hrefValue,type=f"video/{hrefFmt}",loading="lazy")
         newVidTag.append(newSrcTag)
         newVidTag.append("Your browser does not support the video tag. Please update to a newer browser.")
         figureTag.clear()
@@ -251,6 +259,15 @@ if checkInput=="y":
         bilibiliLinkTag["href"]=args.bilibiliVidHref
     coverImg.wrap(bilibiliLinkTag)
     print(f"=====wrap and replacement with {coverImg['src']} successfully")
+
+    # modify the first two figure tags in the children of .page-body tag referring to datetime tag and view count tag
+    pageBodyTag=soup.find("div",class_="page-body")
+    dateTimeFigure,viewCountFigure=pageBodyTag.find_all("figure",limit=2)
+    timeTag=dateTimeFigure.find("time")
+    currentDateTime=datetime.now().strftime("@%B %d, %Y")
+    timeTag.string=currentDateTime
+    viewCountContainer=viewCountFigure.find("mark",class_="highlight-gray")
+    viewCountContainer.string="{{requestedArticleViewCount}}" # need to be rendered from view function
 
     ## detect the filename of page cover image and add it to article object in database
     coverImgSrc=coverImg["src"]
@@ -335,7 +352,8 @@ if checkInput=="y":
         })
         imgTag=soup.new_tag("img",attrs={
             "src":imgSrc,
-            "class":"h-100 w-100 object-fit-contain"
+            "class":"h-100 w-100 object-fit-contain",
+            "loading":"lazy"
         })
         modalContentTag.append(imgTag)
         modalDialogTag.append(modalContentTag)
@@ -361,6 +379,20 @@ if checkInput=="y":
         needsToConstructLargerImgModalsBlock=False
     
     print("==========Creating completed==========")
+
+    # add some style and attributes to resource download link
+    def findResourceDownloadLink(tag):
+        if tag.name=="a" and tag.has_attr("href") and tag["href"].endswith("resourceDownload"):
+            return True
+        else:
+            return False
+    resourceDownloadLinks=soup.find_all(findResourceDownloadLink)
+    for link in resourceDownloadLinks:
+        link["class"]="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+        link["href"]="/".join([r"{% static 'web/resource/docs",seriesToLandArticle.enName,article.enName])+r"' %}"
+        del link["target"]
+        link["download"]=None
+
 
     ## delete some  styles of figure.callout
     calloutTags=soup.find_all("figure",class_="callout")
