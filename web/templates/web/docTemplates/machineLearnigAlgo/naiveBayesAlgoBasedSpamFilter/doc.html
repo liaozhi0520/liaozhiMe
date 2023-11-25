@@ -6,6 +6,9 @@
     #spamCheckDemoModal{
       --bs-modal-bg:var(--doc-bgc);
     }
+	.katex ::-webkit-scrollbar-thumb {
+		background-color: transparent;
+	}
   </style>
 {% endblock %}
 {% block 'moreBtnInSecNavBar' %}
@@ -228,7 +231,7 @@ productForFreqInSpamOfWords=np.prod(freqInSpamOfWords)
 probToSpam=productForFreqInSpamOfWords*spamFreq/(productForFreqInHamOfWords*hamFreq+productForFreqInSpamOfWords*spamFreq)
 probToHam=productForFreqInHamOfWords*hamFreq/(productForFreqInHamOfWords*hamFreq+productForFreqInSpamOfWords*spamFreq)
 print(f"probability of email to be spam: {probToSpam}\n probability of email to be ham: {probToHam}")</code></pre><figure class="block-color-teal_background callout d-flex align-items-baseline" id="c1df78d1-47f9-47c6-a33b-8af14ceaec9a" style="vertical-align:-0.25em"><div style="font-size:1.5em"><span class="icon">👏</span></div><div style="width:100%">好，现在就可以通过该邮件为诈骗邮件的概率判断一封邮件是否为诈骗邮件。
-👆👆👆导航栏有<a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" data-bs-toggle="modal" data-bs-target="#spamCheckDemoModal">演示示例</a>哟，可以尝试以下 😀</div></figure></li></ol><p class="" id="1ae413f9-f768-4dce-82cb-4830e8ac6581">
+👆👆👆导航栏有<a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" data-bs-toggle="modal" data-bs-target="#spamCheckDemoModal" href="">演示示例</a>哟，可以尝试以下 😀</div></figure></li></ol><p class="" id="1ae413f9-f768-4dce-82cb-4830e8ac6581">
 </p></div></article>{% endblock %}
 {% block largerImgModalContainer %}
 <div class="modal fade" id="largerImgModal_6de61bb9-b77f-47f3-b1dd-819fd4f6176d"><div class="modal-dialog modal-fullscreen"><div class="modal-content positive-relative" data-bs-dismiss="modal"><img class="h-100 w-100 object-fit-contain" loading="lazy" src="/static/web/img/docs/machineLearnigAlgo/naiveBayesAlgoBasedSpamFilter/Untitled.png"/></div></div></div><div class="modal fade" id="largerImgModal_8348a579-92c9-4fb6-bf1e-9bb19a86ca73"><div class="modal-dialog modal-fullscreen"><div class="modal-content positive-relative" data-bs-dismiss="modal"><img class="h-100 w-100 object-fit-contain" loading="lazy" src="/static/web/img/docs/machineLearnigAlgo/naiveBayesAlgoBasedSpamFilter/Untitled%201.png"/></div></div></div>{% endblock %}

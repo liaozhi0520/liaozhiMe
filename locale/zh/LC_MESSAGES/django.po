@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-18 01:39+0800\n"
+"POT-Creation-Date: 2023-11-16 02:22+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,154 +16,192 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\liaozhiMe\settings.py:153
+#: .\liaozhiMe\settings.py:132
 msgid "Chinese"
 msgstr "中文"
 
-#: .\liaozhiMe\settings.py:154
+#: .\liaozhiMe\settings.py:133
 msgid "English"
 msgstr "英文"
 
-#: .\web\templates\web\bilibiliVideoDocTemplates\docNotFound.html:3
-#: .\web\templates\web\bilibiliVideoDocTemplates\docNotFound.html:7
+#: .\web\templates\web\docTemplates\docIndex.html:84
+#: .\web\templates\web\layout\docLayout.html:436
+msgid "There is no articles in this series yet"
+msgstr "此系列还没有文章哟"
+
+#: .\web\templates\web\docTemplates\docIndex.html:91
+msgid "There is no series existing now"
+msgstr "还没有文章哟"
+
+#: .\web\templates\web\docTemplates\docNotFound.html:3
+#: .\web\templates\web\docTemplates\docNotFound.html:7
 msgid "Doc Not Found"
 msgstr "文档未找到"
 
+#: .\web\templates\web\docTemplates\machineLearnigAlgo\naiveBayesAlgoBasedSpamFilter\doc.html:23
+msgid "Spam Email Check"
+msgstr "诈骗邮件检查"
+
+#: .\web\templates\web\docTemplates\machineLearnigAlgo\naiveBayesAlgoBasedSpamFilter\doc.html:37
+#: .\web\templates\web\layout\basic.html:161
+#: .\web\templates\web\layout\docLayout.html:269
+msgid "Email"
+msgstr "邮件"
+
+#: .\web\templates\web\docTemplates\machineLearnigAlgo\naiveBayesAlgoBasedSpamFilter\doc.html:39
+msgid "You need to input an email before send"
+msgstr "您需要输入一封邮件"
+
+#: .\web\templates\web\docTemplates\machineLearnigAlgo\naiveBayesAlgoBasedSpamFilter\doc.html:41
+msgid "Feel free to send this email to be checked"
+msgstr "您可以发送邮件去检查"
+
+#: .\web\templates\web\docTemplates\machineLearnigAlgo\naiveBayesAlgoBasedSpamFilter\doc.html:56
+msgid "Do you think the spam check res is correct?"
+msgstr "您觉得这个结果正确吗？"
+
+#: .\web\templates\web\docTemplates\machineLearnigAlgo\naiveBayesAlgoBasedSpamFilter\doc.html:62
+msgid "Thx, we have got your feedback🙂"
+msgstr "感谢提交，我们已经收到了您的反馈🙂"
+
 #: .\web\templates\web\landingpage.html:5
-#: .\web\templates\web\layout\basic.html:259
-#: .\web\templates\web\layout\docLayout.html:284
+#: .\web\templates\web\layout\basic.html:315
+#: .\web\templates\web\layout\docLayout.html:358
 msgid "Landing Page"
 msgstr "首页"
 
-#: .\web\templates\web\landingpage.html:81
+#: .\web\templates\web\landingpage.html:41
 msgid "Recommended Doc To Read"
 msgstr "推荐阅读"
 
-#: .\web\templates\web\landingpage.html:98
+#: .\web\templates\web\landingpage.html:58
 msgid "Go Read"
 msgstr "阅读"
 
-#: .\web\templates\web\landingpage.html:107
+#: .\web\templates\web\landingpage.html:67
 msgid "No Recommendation"
 msgstr "暂无推荐文章"
 
-#: .\web\templates\web\landingpage.html:108
+#: .\web\templates\web\landingpage.html:68
 msgid ""
 "There is no recommended doc yet. You can set it or just don't use this "
 "carousel in production env"
 msgstr "目前还未设置推荐文章。在生产环境当中，请进行设置或者不使用此Carousel"
 
-#: .\web\templates\web\layout\basic.html:74
-#: .\web\templates\web\layout\basic.html:292
-#: .\web\templates\web\layout\docLayout.html:178
-#: .\web\templates\web\layout\docLayout.html:299
+#: .\web\templates\web\layout\basic.html:129
+#: .\web\templates\web\layout\basic.html:337
+#: .\web\templates\web\layout\docLayout.html:252
+#: .\web\templates\web\layout\docLayout.html:366
 msgid "Contact Me"
 msgstr "联系我"
 
-#: .\web\templates\web\layout\basic.html:95
-#: .\web\templates\web\layout\docLayout.html:189
+#: .\web\templates\web\layout\basic.html:150
+#: .\web\templates\web\layout\docLayout.html:263
 msgid "Wechat"
 msgstr "微信"
 
-#: .\web\templates\web\layout\basic.html:106
-#: .\web\templates\web\layout\docLayout.html:195
-msgid "Email"
-msgstr "邮箱"
-
-#: .\web\templates\web\layout\basic.html:117
-#: .\web\templates\web\layout\docLayout.html:201
+#: .\web\templates\web\layout\basic.html:172
+#: .\web\templates\web\layout\docLayout.html:275
 msgid "Bilibili"
 msgstr "Bilibili"
 
-#: .\web\templates\web\layout\basic.html:138
-#: .\web\templates\web\layout\basic.html:171
-#: .\web\templates\web\layout\basic.html:199
-#: .\web\templates\web\layout\docLayout.html:212
-#: .\web\templates\web\layout\docLayout.html:231
-#: .\web\templates\web\layout\docLayout.html:250
+#: .\web\templates\web\layout\basic.html:193
+#: .\web\templates\web\layout\basic.html:226
+#: .\web\templates\web\layout\basic.html:254
+#: .\web\templates\web\layout\docLayout.html:286
+#: .\web\templates\web\layout\docLayout.html:305
+#: .\web\templates\web\layout\docLayout.html:324
 msgid "Close"
 msgstr "关闭"
 
-#: .\web\templates\web\layout\basic.html:154
-#: .\web\templates\web\layout\docLayout.html:220
-msgid "Email Me"
-msgstr "给我发邮件"
+#: .\web\templates\web\layout\basic.html:209
+msgid "Email Box"
+msgstr "邮箱"
 
-#: .\web\templates\web\layout\basic.html:162
-#: .\web\templates\web\layout\docLayout.html:225
+#: .\web\templates\web\layout\basic.html:217
+#: .\web\templates\web\layout\docLayout.html:299
 msgid "Copy"
 msgstr "复制"
 
-#: .\web\templates\web\layout\basic.html:189
-#: .\web\templates\web\layout\docLayout.html:243
+#: .\web\templates\web\layout\basic.html:244
+#: .\web\templates\web\layout\docLayout.html:317
 msgid "Bilibili Profile"
 msgstr "Bilibili个人空间"
 
-#: .\web\templates\web\layout\basic.html:212
-#: .\web\templates\web\layout\docLayout.html:164
+#: .\web\templates\web\layout\basic.html:267
+#: .\web\templates\web\layout\docLayout.html:238
 msgid "Copy Status"
 msgstr "复制状态"
 
-#: .\web\templates\web\layout\basic.html:213
-#: .\web\templates\web\layout\docLayout.html:165
+#: .\web\templates\web\layout\basic.html:268
+#: .\web\templates\web\layout\docLayout.html:239
 msgid "just now"
 msgstr "刚刚"
 
-#: .\web\templates\web\layout\basic.html:222
-#: .\web\templates\web\layout\docLayout.html:169
+#: .\web\templates\web\layout\basic.html:277
+#: .\web\templates\web\layout\docLayout.html:243
 msgid "You've copied my email address, go ahead and email me"
 msgstr "您已经复制了我的邮箱地址，可以发邮件给我了"
 
-#: .\web\templates\web\layout\basic.html:270
-#: .\web\templates\web\layout\docLayout.html:292
-msgid "Bilibili Video Resouce"
-msgstr "Bilibili视频资源"
+#: .\web\templates\web\layout\basic.html:288
+#: .\web\templates\web\layout\docLayout.html:341
+msgid "Zealo"
+msgstr "子老苑"
 
-#: .\web\templates\web\layout\basic.html:278
-msgid "Bilibili Video Docs"
-msgstr "Bilibili视频文档"
+#: .\web\templates\web\layout\basic.html:323
+#: .\web\templates\web\layout\docLayout.html:414
+msgid "Docs"
+msgstr "文档库"
 
-#: .\web\templates\web\layout\basic.html:380
-#: .\web\templates\web\layout\basic.html:385
-#: .\web\templates\web\layout\basic.html:388
-#: .\web\templates\web\layout\basic.html:406
-#: .\web\templates\web\layout\basic.html:411
-#: .\web\templates\web\layout\basic.html:414
+#: .\web\templates\web\layout\basic.html:425
+#: .\web\templates\web\layout\basic.html:430
+#: .\web\templates\web\layout\basic.html:433
+#: .\web\templates\web\layout\basic.html:451
+#: .\web\templates\web\layout\basic.html:456
+#: .\web\templates\web\layout\basic.html:459
 msgid "Error:"
 msgstr "错误信息："
 
-#: .\web\templates\web\layout\docLayout.html:340
-msgid "Docs"
+#: .\web\templates\web\layout\docLayout.html:294
+msgid "Email Me"
+msgstr "给我发邮件"
+
+#: .\web\templates\web\layout\docLayout.html:407
+msgid "Doc"
 msgstr "文档"
 
-#: .\web\templates\web\layout\docLayout.html:348
-msgid "Bilibili Video Docs Navbar"
-msgstr "Bilibili视频文档导航"
+#: .\web\templates\web\layout\docLayout.html:442
+msgid "There is no series yet"
+msgstr "目前还没有文章设置"
 
-#: .\web\templates\web\layout\docLayout.html:380
-#, fuzzy
-#| msgid "Bilibili Video Resouce"
-msgid "Bilibili Video Resource"
-msgstr "Bilibili视频资源"
-
-#: .\web\templates\web\layout\docLayout.html:401
+#: .\web\templates\web\layout\docLayout.html:466
 msgid "Table of Contents"
 msgstr "内容导航"
 
-#: .\web\templates\web\layout\docLayout.html:469
-#: .\web\templates\web\layout\docLayout.html:474
-#: .\web\templates\web\layout\docLayout.html:477
-#: .\web\templates\web\layout\docLayout.html:495
-#: .\web\templates\web\layout\docLayout.html:500
-#: .\web\templates\web\layout\docLayout.html:503
-#, fuzzy
-#| msgid "Error:"
+#: .\web\templates\web\layout\docLayout.html:535
+#: .\web\templates\web\layout\docLayout.html:540
+#: .\web\templates\web\layout\docLayout.html:543
+#: .\web\templates\web\layout\docLayout.html:561
+#: .\web\templates\web\layout\docLayout.html:566
+#: .\web\templates\web\layout\docLayout.html:569
 msgid "Error: "
 msgstr "错误信息："
 
 #: .\web\templates\web\templateTagsHtml\notification.html:9
 msgid "Notification"
 msgstr "通知"
+
+#: .\web\views\docApis\nbSpamFilter.py:39
+msgid "We may give the email a label: spam"
+msgstr "这封邮件可能是封诈骗邮件"
+
+#: .\web\views\docApis\nbSpamFilter.py:39
+msgid "We may give the email a label: normal"
+msgstr "这封邮件可能是封正常邮件"
+
+#: .\web\views\docApis\nbSpamFilter.py:51
+msgid "Something unexpected error occurred from server: "
+msgstr "一些意外的来自服务端的错误发生了"
 
 #: .\web\views\landingpage.py:40
 msgid ""
@@ -175,9 +212,3 @@ msgstr "抱歉，错误出现的原因似乎是由于您向服务器传递了错
 msgid ""
 "Sorry, the server may glitched. This is the error messeage from server: "
 msgstr "抱歉，由于服务器的原因出错了。这是来自服务器的错误信息："
-
-#~ msgid "Pure Beginner Guide"
-#~ msgstr "入门小白了解"
-
-#~ msgid "Model"
-#~ msgstr "模型"
