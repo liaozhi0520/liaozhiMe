@@ -24,10 +24,10 @@ class SpamCheckView(View):
             nbClassifierScript=os.path.join(baseDir,"web","ml","nbSpamFilter","nbClassifier.py")
             if platform.system()=="Windows":
                 runCmd=f'{os.path.join(os.path.dirname(baseDir),"venv","Scripts","activate.bat")} && python {nbClassifierScript} -e {str(spamCheckResUserFeedbackObj.id)} -b {baseDir}'
+                cmdResult=subprocess.run(runCmd,capture_output=True,text=True,shell=True)
             elif platform.system()=="Linux":
                 runCmd=f'source {os.path.join(os.path.dirname(baseDir),"venv","bin","activate")} && python {nbClassifierScript} -e {str(spamCheckResUserFeedbackObj.id)} -b {baseDir}'
-            print(f"{runCmd}")
-            cmdResult=subprocess.run(runCmd,capture_output=True,text=True,shell=True)
+                cmdResult=subprocess.run(runCmd,capture_output=True,text=True,shell=True,executable="/bin/bash")
             if cmdResult.returncode==0:
                 sucOutput=cmdResult.stdout
                 emailType=re.findall(r"emailType: (\d{1})",sucOutput)[0]

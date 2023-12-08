@@ -28,7 +28,11 @@
         #websiteIconContainer svg{
             animation: fadeDown 1s forwards;
         }
-        
+        footer a{
+            --bs-link-color-rgb:var(--bs-success-rgb);
+            --bs-link-hover-color-rgb:var(--bs-success-rgb);
+            --bs-link-opacity:0.8;
+        }
     </style>
 {% endblock %}
 {% block content %}
@@ -81,6 +85,14 @@
             </button>
         </div>
     </div>
+    <footer class="position-fixed bottom-0 start-0 w-100 border-top pt-2 pb-1">
+        <div class="text-center ">
+            <a class="icon-link icon-link-hover" href="https://beian.miit.gov.cn/" target="_blank">
+                <small >陕ICP备2023019523号-1</small>
+                <svg class="bi"><use xlink:href="#arrowRight"></use></svg>
+            </a>
+        </div>
+    </footer>
 {% endblock %}
 {% block js %}
 

@@ -144,9 +144,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/' #this is displaying as the prefix of static file url
-STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles') #when you collect the static files, it will be collected into this folder
+# STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles') #when you collect the static files, it will be collected into this folder
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'web/static')
     ## when I add volumn to my droplet, I need to put all my bilibili resource to this volumn and specify its dir to let django to find it
-
 ]
